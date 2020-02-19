@@ -6,7 +6,9 @@ RUN wget https://github.com/jgm/pandoc/releases/download/2.9.1.1/pandoc-2.9.1.1-
 RUN dpkg -i pandoc-2.9.1.1-1-amd64.deb
 RUN pip install jupyter_client ipykernel jupyter
 RUN python3 -m ipykernel install --user
-RUN pip install nbdev
+#RUN pip install nbdev
+RUN /bin/bash -c "git clone https://github.com/fastai/nbdev; pip install -e nbdev"
+
 
 WORKDIR /fastpages
 COPY . .
