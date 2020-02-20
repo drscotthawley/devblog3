@@ -109,6 +109,11 @@ And you can include links, like this [link to fast.ai](https://www.fast.ai). Pos
           <a class="post-link" href="/devblog3/2019/02/08/My-1st-NN-Part-3-Multi-Layer-and-Backprob.html">
             My First NN Part 3. Multi-Layer Networks and Backpropagation
           </a>
+        </h3></li><li><span class="post-meta">Feb 4, 2019</span>
+        <h3>
+          <a class="post-link" href="/devblog3/2019/02/04/My-First-NN-Part-2.html">
+            My First Neural Network, Part 2. Bias and CE Loss
+          </a>
         </h3></li><li><span class="post-meta">Dec 16, 2018</span>
         <h3>
           <a class="post-link" href="/devblog3/2018/12/16/Parallelizing-Python-Simplified.html">
