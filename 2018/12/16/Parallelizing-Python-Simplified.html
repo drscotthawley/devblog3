@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Parallelizing Python, Simplified | Scott H. Hawley</title>
+<title>Parallelizing Python Simplified | Scott H. Hawley</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Parallelizing Python, Simplified" />
+<meta property="og:title" content="Parallelizing Python Simplified" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Basic use of multiprocessing." />
 <meta property="og:description" content="Basic use of multiprocessing." />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-12-16T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Basic use of multiprocessing.","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html","dateModified":"2018-12-16T00:00:00-06:00","datePublished":"2018-12-16T00:00:00-06:00","headline":"Parallelizing Python, Simplified","image":"https://drscotthawley.github.io/images/parallelpython.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html"},"@context":"https://schema.org"}</script>
+{"description":"Basic use of multiprocessing.","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html","dateModified":"2018-12-16T00:00:00-06:00","datePublished":"2018-12-16T00:00:00-06:00","headline":"Parallelizing Python Simplified","image":"https://drscotthawley.github.io/images/parallelpython.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +87,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Parallelizing Python, Simplified</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Parallelizing Python Simplified</h1>
     <p class="post-meta"><time class="dt-published" datetime="2018-12-16T00:00:00-06:00" itemprop="datePublished">
         Dec 16, 2018
       </time></p>
@@ -120,11 +120,12 @@ put all that in a separate function.</li>
 </ol>
 
 <h2 id="example-1-generate-a-bunch-of-files">Example 1: Generate a bunch of files</h2>
-<p>Let’s say you have some important synthetic data that you want to generate lots of instances of. 
-For now, for simplicity, we’re just going to generate images of, let’s say, random noise.  And to make it interesting 
+<p>Let’s say you have some important synthetic data that you want to generate lots of instances of.
+For now, for simplicity, we’re just going to generate images of, let’s say, random noise.  And to make it interesting
 we’ll generate 2000 of them.</p>
 
 <p>Here’s the serial for-loop version:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 
@@ -138,6 +139,7 @@ we’ll generate 2000 of them.</p>
 </code></pre></div></div>
 
 <p>Now we write a dedicated function, put it in a <code class="language-plaintext highlighter-rouge">partial</code> wrapper, and call it as follows:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
@@ -156,7 +158,7 @@ we’ll generate 2000 of them.</p>
     <span class="n">wrapper</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Finally we replace the loop with a multiprocessing pool. We can either use all the cpus on the machine (which is the default) 
+<p>Finally we replace the loop with a multiprocessing pool. We can either use all the cpus on the machine (which is the default)
 or specify how many to use, by giving an argument to <code class="language-plaintext highlighter-rouge">Pool()</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
@@ -183,15 +185,16 @@ or specify how many to use, by giving an argument to <code class="language-plain
 <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p>There are other ways you can do this to get more control, e.g. to have each process in the pool receive a particular 
+<p>There are other ways you can do this to get more control, e.g. to have each process in the pool receive a particular
 <em>range</em> of indices, but this basic setup will get the job done.  And if you turn off the printing to screen and time the execution,
 you’ll see the speedup.</p>
 
 <h2 id="example-2-read-a-bunch-of-files-into-a-list">Example 2: Read a bunch of files into a list</h2>
-<p>This example is actually of limited utility and you may want to just skip down to “Example 3: Filling a numpy array,” but 
+<p>This example is actually of limited utility and you may want to just skip down to “Example 3: Filling a numpy array,” but
 it’s still an illustrative example that motivates Example 3, and offers a bit of variety in how one might do things.  In this case we’re <em>not</em> going to use Pool.map; instead we’re going to use a context manager for the particular datatype of <code class="language-plaintext highlighter-rouge">list</code>.</p>
 
 <p>Let’s try to load in all the image files we just generated, into a list.  Here’s the serial version:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 
@@ -267,6 +270,7 @@ and then sort on that index.</p>
 the simpler of the two workarounds.</p>
 
 <p>Let’s load all those images into a numpy array instead of a list. First the serial version:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
@@ -311,7 +315,7 @@ the simpler of the two workarounds.</p>
     <span class="k">print</span><span class="p">(</span><span class="s">"Reading file"</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>   <span class="c1"># assign the values into the memory of the shared array
 </span>    <span class="k">return</span>
-    
+
 <span class="n">name_prefix</span> <span class="o">=</span> <span class="s">'image_'</span>
 <span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
 <span class="n">n_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">)</span>
