@@ -1,8 +1,8 @@
-```yaml
 ---
 toc: true
+description: Deep neural network learns (boxy) room shape given mode frequencies, or vice versa.
+image: https://raw.githubusercontent.com/drscotthawley/room-shape/master/sample_mode_plot.png
 ---
-```
 
 # Learning Room Shapes (with Neural Networks)
 
