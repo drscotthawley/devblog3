@@ -1,9 +1,10 @@
+# Learning Room Shapes (with Neural Networks)
 
-'Deep' neural network learns (boxy) room shape given mode frequencies, or vice versa.
+*'Deep' neural network learns (boxy) room shape given mode frequencies, or vice versa.*
 
-Main code is [here](https://github.com/drscotthawley/room-shape).
+This is just a quick note, sharing a new "toy" result, that relates to function spaces, acoustics, and machine learning.  I never bothered to publish it, because I was just "playing around".  The real trick would be to extend this to "non-boxy" room shapes, which...turns out to be hard! haha
 
-*This is just a quick note sharing a new "toy" result, that relates to function spaces, acoustics, and machine learning.*
+Main Python code for this is [here](https://github.com/drscotthawley/room-shape).
 
 ## Motivation
 During [Karlheinz Brandenburg's visit](http://www.belmont.edu/burs/), he remarked that learning room shapes from the sound of the room is still an open question. So yesterday, "for fun" I decided to try the easiest possible thing I could think of, the most "ideal" if you will:  wrote a NN system that learns to use a set of room mode frequencies to predict (boxy) room dimensions, or vice versa, i.e. it learns the "Rayleigh Equation" for 3D standing waves... 
