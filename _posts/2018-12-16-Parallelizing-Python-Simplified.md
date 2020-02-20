@@ -39,7 +39,7 @@ For now, for simplicity, we're just going to generate images of, let's say, rand
 we'll generate 2000 of them. 
 
 Here's the serial for-loop version:
-~~~ python
+```python
 import numpy as np
 import cv2
 
@@ -50,7 +50,7 @@ for i in range(n_images):
     filename = 'image_'+str(i)+'.png'
     print("writing file ",filename)
     cv2.imwrite(filename,arr)
-~~~
+```
 
 Now we write a dedicated function, put it in a `partial` wrapper, and call it as follows:
 ~~~ python
