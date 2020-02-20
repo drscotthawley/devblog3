@@ -21,7 +21,7 @@
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
   <link rel="stylesheet" href="/devblog3/assets/main.css">
-  <script src="https://kit.fontawesome.com/4f6d78d8ce.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://drscotthawley.github.io/devblog3/feed.xml" title="Scott H. Hawley (alt. blog via fastpages)" />
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://drscotthawley.github.io/devblog3/feed.xml" title="Scott H. Hawley (alt. blog via fastpages)" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
@@ -63,11 +63,16 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function(){
+      // add link icon to anchor tags
       var elem = document.querySelectorAll(".anchor-link")
-      elem.forEach(e => (e.innerHTML = '<i class="far fa-link fa-xs"></i>'));
+      elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+      // remove paragraph tags in rendered toc (happens from notebooks)
+      var toctags = document.querySelectorAll(".toc-entry")
+      toctags.forEach(e => (e.firstElementChild.innerText = e.firstElementChild.innerText.replace('¶', '')))
     });
   </script>
-</head><body><header class="site-header" role="banner">
+</head>
+<body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/devblog3/">Scott H. Hawley (alt. blog via fastpages)</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -90,39 +95,52 @@
     <h1 class="post-title p-name" itemprop="name headline">Learning Room Shapes (with Neural Networks)</h1>
     <p class="post-meta"><time class="dt-published" datetime="2017-05-04T00:00:00-05:00" itemprop="datePublished">
         May 4, 2017
-      </time></p>
-  </header>
+      </time>•<span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+    </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><em>‘Deep’ neural network learns (boxy) room shape given mode frequencies, or vice versa.</em></p>
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#motivation">Motivation</a></li>
+<li class="toc-entry toc-h2"><a href="#results">Results</a></li>
+<li class="toc-entry toc-h2"><a href="#future-work">Future Work</a></li>
+</ul><p><em>‘Deep’ neural network learns (boxy) room shape given mode frequencies, or vice versa.</em></p>
 
 <p>This is just a quick note, sharing a new “toy” result, that relates to function spaces, acoustics, and machine learning.  I never bothered to publish it, because I was just “playing around”.  The real trick would be to extend this to “non-boxy” room shapes, which…turns out to be hard! haha</p>
 
 <p>Main Python code for this is <a href="https://github.com/drscotthawley/room-shape">here</a>.</p>
 
-<h2 id="motivation">Motivation</h2>
+<h2 id="motivation">
+<a class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>
 <p>During <a href="http://www.belmont.edu/burs/">Karlheinz Brandenburg’s visit</a>, he remarked that learning room shapes from the sound of the room is still an open question. So yesterday, “for fun” I decided to try the easiest possible thing I could think of, the most “ideal” if you will:  wrote a NN system that learns to use a set of room mode frequencies to predict (boxy) room dimensions, or vice versa, i.e. it learns the “Rayleigh Equation” for 3D standing waves…</p>
 
-<p><a href="https://www.codecogs.com/eqnedit.php?latex=f_{nx,ny,nz}&space;=&space;{v_s&space;\over&space;2}&space;\sqrt{&space;\left(&space;{n_x&space;\over&space;L}&space;\right)^2&space;&plus;&space;\left(&space;{n_y&space;\over&space;W}&space;\right)^2&space;&plus;&space;\left(&space;{n_z&space;\over&space;H}&space;\right)^2&space;},&space;\{&space;n_x,&space;n_y,&space;n_z&space;=&space;0,1,2,3,...\}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f_{nx,ny,nz}&space;=&space;{v_s&space;\over&space;2}&space;\sqrt{&space;\left(&space;{n_x&space;\over&space;L}&space;\right)^2&space;&plus;&space;\left(&space;{n_y&space;\over&space;W}&space;\right)^2&space;&plus;&space;\left(&space;{n_z&space;\over&space;H}&space;\right)^2&space;},&space;\{&space;n_x,&space;n_y,&space;n_z&space;=&space;0,1,2,3,...\}" title="f_{nx,ny,nz} = {v_s \over 2} \sqrt{ \left( {n_x \over L} \right)^2 + \left( {n_y \over W} \right)^2 + \left( {n_z \over H} \right)^2 }, \{ n_x, n_y, n_z = 0,1,2,3,...\}" /></a></p>
+<p><a href="https://www.codecogs.com/eqnedit.php?latex=f_%7Bnx,ny,nz%7D&amp;space;=&amp;space;%7Bv_s&amp;space;%5Cover&amp;space;2%7D&amp;space;%5Csqrt%7B&amp;space;%5Cleft(&amp;space;%7Bn_x&amp;space;%5Cover&amp;space;L%7D&amp;space;%5Cright)%5E2&amp;space;&amp;plus;&amp;space;%5Cleft(&amp;space;%7Bn_y&amp;space;%5Cover&amp;space;W%7D&amp;space;%5Cright)%5E2&amp;space;&amp;plus;&amp;space;%5Cleft(&amp;space;%7Bn_z&amp;space;%5Cover&amp;space;H%7D&amp;space;%5Cright)%5E2&amp;space;%7D,&amp;space;%5C%7B&amp;space;n_x,&amp;space;n_y,&amp;space;n_z&amp;space;=&amp;space;0,1,2,3,...%5C%7D" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f_%7Bnx,ny,nz%7D&amp;space;=&amp;space;%7Bv_s&amp;space;%5Cover&amp;space;2%7D&amp;space;%5Csqrt%7B&amp;space;%5Cleft(&amp;space;%7Bn_x&amp;space;%5Cover&amp;space;L%7D&amp;space;%5Cright)%5E2&amp;space;&amp;plus;&amp;space;%5Cleft(&amp;space;%7Bn_y&amp;space;%5Cover&amp;space;W%7D&amp;space;%5Cright)%5E2&amp;space;&amp;plus;&amp;space;%5Cleft(&amp;space;%7Bn_z&amp;space;%5Cover&amp;space;H%7D&amp;space;%5Cright)%5E2&amp;space;%7D,&amp;space;%5C%7B&amp;space;n_x,&amp;space;n_y,&amp;space;n_z&amp;space;=&amp;space;0,1,2,3,...%5C%7D" title="f_{nx,ny,nz} = {v_s \over 2} \sqrt{ \left( {n_x \over L} \right)^2 + \left( {n_y \over W} \right)^2 + \left( {n_z \over H} \right)^2 }, \{ n_x, n_y, n_z = 0,1,2,3,...\}"></a></p>
 
 <p>…both ‘forwards’ or ‘backwards’:  [L,W,H] &lt;–&gt; [list of mode frequencies]  (given speed of sound v_s).</p>
 
-<h2 id="results">Results</h2>
+<h2 id="results">
+<a class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
 <p>Seems to learn within +/- 5%.  I don’t have a graphical representation of going from mode frequencies to room dimensions (any ideas?).  For mapping dimensions to frequencies, here’s a sample room shown in the picture (red=target, green=predicted), used a training set of 200,000 random rooms.  It even learns to sort the freqs in ascending order.</p>
 
-<p><img src="https://raw.githubusercontent.com/drscotthawley/room-shape/master/sample_mode_plot.png" alt="Sample plot of mode freqs" /></p>
+<p><img src="https://raw.githubusercontent.com/drscotthawley/room-shape/master/sample_mode_plot.png" alt="Sample plot of mode freqs"></p>
 
 <p>Interestingly, trying to ‘help’ the network by using squared frequencies, inverse-(squared)-dimensions, etc. actually gave worse performance than letting the network learn the nonlinearities itself. (???)</p>
 
 <p>Of what possible practical utility is this? Not really sure. Although, it does a fairly decent job learning the room shape even using a smaller random subsample of the available mode frequencies. :-)  If anything, it highlights a weakness of data-driven modeling: there’s no way you’ll measure 200,000 rooms in real life!</p>
 
-<h2 id="future-work">Future Work</h2>
+<h2 id="future-work">
+<a class="anchor" href="#future-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future Work</h2>
 <p>Taking this further, would require analyzing the weights of the network in detail, to see how it represents the function approximation.  Which would be worth doing!</p>
 
 <p>Moving on to non-boxy rooms would be relevant and challenging.  Some means of encoding the room geometry would be needed, as well some way of simulating (or measuring?) resonant frequencies or impulse responses.</p>
 
   </div><a class="u-url" href="/devblog3/2017/05/04/Learning-Room-Shapes.html" hidden></a>
 </article>
+
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/devblog3/"></data>
