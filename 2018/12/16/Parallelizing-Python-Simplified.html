@@ -3,20 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Parallelizing Python Simplified | Scott H. Hawley</title>
+<title>Parallelizing Python, Simplified | Scott H. Hawley</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Parallelizing Python Simplified" />
+<meta property="og:title" content="Parallelizing Python, Simplified" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Basic use of multiprocessing." />
-<meta property="og:description" content="Basic use of multiprocessing." />
+<meta name="description" content="An alternate copy of my development blog, using fastpages." />
+<meta property="og:description" content="An alternate copy of my development blog, using fastpages." />
 <link rel="canonical" href="https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html" />
 <meta property="og:url" content="https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html" />
 <meta property="og:site_name" content="Scott H. Hawley" />
-<meta property="og:image" content="https://drscotthawley.github.io/images/parallelpython.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-12-16T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Basic use of multiprocessing.","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html","dateModified":"2018-12-16T00:00:00-06:00","datePublished":"2018-12-16T00:00:00-06:00","headline":"Parallelizing Python Simplified","image":"https://drscotthawley.github.io/images/parallelpython.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html"},"@context":"https://schema.org"}</script>
+{"description":"An alternate copy of my development blog, using fastpages.","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html","dateModified":"2018-12-16T00:00:00-06:00","datePublished":"2018-12-16T00:00:00-06:00","headline":"Parallelizing Python, Simplified","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,27 +86,27 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Parallelizing Python Simplified</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Parallelizing Python, Simplified</h1>
     <p class="post-meta"><time class="dt-published" datetime="2018-12-16T00:00:00-06:00" itemprop="datePublished">
         Dec 16, 2018
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><img src="http://drscotthawley.github.io/images/parallelpython.png" alt="title" /></p>
+    <p><img src="http://drscotthawley.github.io/images/parallelpython.png" alt="title_img" /></p>
 
 <p>So you have some serial task that takes forever, and you’re thinking it should be parallelizable, but you find
 the documentation on this to be obtuse?  Yea.</p>
 
 <p>Usually I’m interested in either <em>creating</em> lots of data in parallel, or <em>inputting</em> lots of data in parallel, and it’s
-often something that I first implemented as a loop but got tired of how slow it runs.  These involve <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarassingly parallel</a> tasks in that they don’t depend on one another.</p>
+often something that I first implemented as a loop but got tired of how slow it runs.  These involve <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel</a> tasks in that they don’t depend on one another.</p>
 
 <p>There’s a simple prescription for parallelizing most of these kinds of tasks in Python.  It goes as follows:</p>
 <ol>
   <li>Have some kind of task performed in a for loop.</li>
   <li>Write a function that does what you want for one “instance.”  For example, take what’s inside one of your for loops,
 put all that in a separate function.</li>
-  <li>As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.&lt;/li&gt;</li>
+  <li>As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.</li>
   <li>Use functools.partial to create a wrapper for your function.</li>
   <li>Replace the loop with a call to Pool.map().</li>
 </ol>
@@ -359,15 +358,7 @@ the array indices into chunks (sort of like we did in Example 2), then you won�
 
 <p><strong>2. When Processes Die.</strong>  Debugging <code class="language-plaintext highlighter-rouge">multiprocessing</code> runs is <em>a pain</em>.  If one process dies (crashes, seg faults, generates any kind of “Error”), it will hang the entire pool and you won’t know why because the error messages won’t come to <code class="language-plaintext highlighter-rouge">stdout</code> or <code class="language-plaintext highlighter-rouge">stderr</code>.  Look elsewhere for tutorials on tools for debugging multiprocessing runs.  Good news is that regular <code class="language-plaintext highlighter-rouge">print</code> statements still come to <code class="language-plaintext highlighter-rouge">stdout</code> for all processes, so one way of debugging is the age-old method of just loading your code with <code class="language-plaintext highlighter-rouge">print</code> statements.</p>
 
-  </div><!-- from https://github.com/utterance/utterances -->
-<script src="https://utteranc.es/client.js"
-        repo="drscotthawley/devblog3"
-        issue-term="title"
-        label="blogpost-comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script><a class="u-url" href="/devblog3/2018/12/16/Parallelizing-Python-Simplified.html" hidden></a>
+  </div><a class="u-url" href="/devblog3/2018/12/16/Parallelizing-Python-Simplified.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
