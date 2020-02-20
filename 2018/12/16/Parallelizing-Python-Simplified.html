@@ -94,7 +94,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><img src="../images/parallelpython.png" alt="title" /></p>
+    <p><img src="http://drscotthawley.github.io/images/parallelpython.png" alt="title" /></p>
 
 <p>So you have some serial task that takes forever, and you’re thinking it should be parallelizable, but you find
 the documentation on this to be obtuse?  Yea.</p>
@@ -103,13 +103,13 @@ the documentation on this to be obtuse?  Yea.</p>
 often something that I first implemented as a loop but got tired of how slow it runs.  These involve <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarassingly parallel</a> tasks in that they don’t depend on one another.</p>
 
 <p>There’s a simple prescription for parallelizing most of these kinds of tasks in Python.  It goes as follows:</p>
-<ol start="0">
+<ol>
   <li>Have some kind of task performed in a for loop.</li>
-  <li>Write a function that does what you want for one "instance."  For example, take what's inside one of your for loops,
+  <li>Write a function that does what you want for one “instance.”  For example, take what’s inside one of your for loops,
 put all that in a separate function.</li>
-  <li>As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.</li>
-    <li>Use functools.partial to create a wrapper for your function.</li>
-  <li>Replace the loop with a call to Pool.map(). </li>
+  <li>As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.&lt;/li&gt;</li>
+  <li>Use functools.partial to create a wrapper for your function.</li>
+  <li>Replace the loop with a call to Pool.map().</li>
 </ol>
 
 <p>In the following, we’ll cover 3 examples for parallel tasks:</p>
@@ -214,6 +214,7 @@ it’s still an illustrative example that motivates Example 3, and offers a bit 
 
 <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_data_list</span><span class="p">),</span><span class="s">"images in list."</span><span class="p">)</span>
 </code></pre></div></div>
+
 <p>(If we wanted to, we could easily convert this list of images to a numpy array. But let’s hold off on that.)</p>
 
 <p>This time, we’ll split up the tasks manually into equal numbers for each process.
