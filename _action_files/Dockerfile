@@ -11,7 +11,6 @@ RUN python3 -m ipykernel install --user
 RUN pip install git+https://github.com/fastai/nbdev.git
 
 
-
 WORKDIR /fastpages
 COPY . .
 RUN chmod u+x action_entrypoint.sh
