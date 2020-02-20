@@ -1,23 +1,20 @@
 ---
 toc: true
-description: Basic use of multiprocessing.
-image:  ../images/parallelpython.png
-comments: true
 ---
-
-![title](http://drscotthawley.github.io/images/parallelpython.png)
+# Parallelizing Python, Simplified
+![title_img](http://drscotthawley.github.io/images/parallelpython.png)
 
 So you have some serial task that takes forever, and you're thinking it should be parallelizable, but you find
 the documentation on this to be obtuse?  Yea.
 
 Usually I'm interested in either *creating* lots of data in parallel, or *inputting* lots of data in parallel, and it's
-often something that I first implemented as a loop but got tired of how slow it runs.  These involve [embarassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) tasks in that they don't depend on one another.
+often something that I first implemented as a loop but got tired of how slow it runs.  These involve [embarrassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) tasks in that they don't depend on one another.
 
 There's a simple prescription for parallelizing most of these kinds of tasks in Python.  It goes as follows:
 1. Have some kind of task performed in a for loop.
 2. Write a function that does what you want for one "instance."  For example, take what's inside one of your for loops,
 put all that in a separate function.
-3. As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.</li>
+3. As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.
 4. Use functools.partial to create a wrapper for your function.
 5. Replace the loop with a call to Pool.map().
 
