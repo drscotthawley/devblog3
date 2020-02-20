@@ -1,8 +1,13 @@
 ---
 toc: true
+description: Basic use of multiprocessing.
+image:  ../images/parallelpython.png
+comments: true
 ---
 # Parallelizing Python, Simplified
-![title_img](http://drscotthawley.github.io/images/parallelpython.png)
+
+![]({{ site.baseurl }}/images/parallelpython.png "")
+
 
 So you have some serial task that takes forever, and you're thinking it should be parallelizable, but you find
 the documentation on this to be obtuse?  Yea.

@@ -17,13 +17,13 @@ jobs:
       with:
         persist-credentials: false
 
+    - name: fastpages repo only - convert notebooks and word docs to posts
+      if: github.repository == 'fastai/fastpages'
+      uses: ./ # use code in this repo instead of fastai/fastpages@master, for testing.
+
     - name: convert notebooks and word docs to posts
-      #uses: fastai/fastpages@master # use the code in this repo instead of fastai/fastpages@master, for testing.
-      uses: ./
-      #uses: drscotthawley/devblog3@master
-      with:
-        BOOL_SAVE_MARKDOWN: false
-        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      if: github.repository != 'fastai/fastpages'
+      uses: fastai/fastpages@master # templates will use what is in fastai/fastpages
 
     - name: setup directories for Jekyll build
       run: |
@@ -40,10 +40,9 @@ jobs:
         sudo chmod -R 777 _site/
         cp CNAME _site/ 2>/dev/null || :
 
-    # only deploy upon a push to master
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./_site
+      if: github.event_name	== 'push'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+        publish_dir: ./_site
