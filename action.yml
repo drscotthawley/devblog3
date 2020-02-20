@@ -4,11 +4,11 @@ author: Hamel Husain
 inputs:
   BOOL_SAVE_MARKDOWN:
     description: Either 'true' or 'false'.  Whether or not to commit converted markdown files from notebooks and word documents into the _posts directory in your repo.  This is useful for debugging.
-    required: false
-    default: false
+    required: true
+    default: true
   SSH_DEPLOY_KEY:
     description: a ssh deploy key is required if BOOL_SAVE_MARKDOWN = 'true'
-    required: false
+    required: true
 branding:
   color: 'blue'
   icon: 'book'
