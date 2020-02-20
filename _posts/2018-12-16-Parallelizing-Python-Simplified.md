@@ -5,7 +5,7 @@ image:  ../images/parallelpython.png
 comments: true
 ---
 
-![title](../images/parallelpython.png)
+![title](http://drscotthawley.github.io/images/parallelpython.png)
 
 So you have some serial task that takes forever, and you're thinking it should be parallelizable, but you find
 the documentation on this to be obtuse?  Yea.
@@ -14,15 +14,12 @@ Usually I'm interested in either *creating* lots of data in parallel, or *inputt
 often something that I first implemented as a loop but got tired of how slow it runs.  These involve [embarassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) tasks in that they don't depend on one another.
 
 There's a simple prescription for parallelizing most of these kinds of tasks in Python.  It goes as follows:
-<ol start="0">
-  <li>Have some kind of task performed in a for loop.</li>
-  <li>Write a function that does what you want for one "instance."  For example, take what's inside one of your for loops,
-put all that in a separate function.</li>
-  <li>As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.</li>
-    <li>Use functools.partial to create a wrapper for your function.</li>
-  <li>Replace the loop with a call to Pool.map(). </li>
-</ol>
-
+1. Have some kind of task performed in a for loop.
+2. Write a function that does what you want for one "instance."  For example, take what's inside one of your for loops,
+put all that in a separate function.
+3. As a check, keep your loop but use only the function call. Make sure it produces the same results as the original version of your code.</li>
+4. Use functools.partial to create a wrapper for your function.
+5. Replace the loop with a call to Pool.map().
 
 
 In the following, we'll cover 3 examples for parallel tasks:
@@ -131,6 +128,7 @@ for i in range(n_files):
 
 print(len(img_data_list),"images in list.")
 ```
+
 (If we wanted to, we could easily convert this list of images to a numpy array. But let's hold off on that.)
 
 This time, we'll split up the tasks manually into equal numbers for each process.
