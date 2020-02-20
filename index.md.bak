@@ -89,40 +89,15 @@
 
 And you can include links, like this [link to fast.ai](https://www.fast.ai). Posts will appear after this file. 
 <h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Feb 20, 2020</span>
-        <h3>
-          <a class="post-link" href="/devblog3/2020/02/20/2020-02-19-Following-Gravity-Copy1.html">
-            
-          </a>
-        </h3></li><li><span class="post-meta">Feb 20, 2020</span>
-        <h3>
-          <a class="post-link" href="/devblog3/2020/02/20/2017-02-23-Following-Gravity.html">
-            
-          </a>
-        </h3></li><li><span class="post-meta">Feb 19, 2020</span>
+    <ul class="post-list"><li><span class="post-meta">Feb 19, 2020</span>
         <h3>
           <a class="post-link" href="/devblog3/2020/02/19/test.html">
             Fastpages Notebook Blog Post
           </a>
         </h3></li><li><span class="post-meta">Feb 18, 2020</span>
         <h3>
-          <a class="post-link" href="/devblog3/2020/02/18/nbdev-tutorial.html">
-            nbdev tutorial
-          </a>
-        </h3></li><li><span class="post-meta">Feb 18, 2020</span>
-        <h3>
           <a class="post-link" href="/devblog3/2020/02/18/fastpages_tests.html">
             More tests for nbdev &amp; fastpages
-          </a>
-        </h3></li><li><span class="post-meta">Feb 18, 2020</span>
-        <h3>
-          <a class="post-link" href="/devblog3/2020/02/18/Testagain.html">
-            Please work
-          </a>
-        </h3></li><li><span class="post-meta">Jan 14, 2020</span>
-        <h3>
-          <a class="post-link" href="/devblog3/2020/01/14/test-markdown-post.html">
-            Example Markdown Post
           </a>
         </h3></li><li><span class="post-meta">Jan 13, 2020</span>
         <h3>
@@ -162,7 +137,7 @@ And you can include links, like this [link to fast.ai](https://www.fast.ai). Pos
         </h3></li><li><span class="post-meta">Feb 23, 2017</span>
         <h3>
           <a class="post-link" href="/devblog3/2017/02/23/Following-Gravity-Colab.html">
-            Please work
+            Following Gravity - ML Foundations Part I
           </a>
         </h3></li><li><span class="post-meta">Feb 6, 2017</span>
         <h3>
