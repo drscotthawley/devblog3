@@ -19,7 +19,7 @@ jobs:
 
     - name: convert notebooks and word docs to posts
       #uses: fastai/fastpages@master # use the code in this repo instead of fastai/fastpages@master, for testing.
-      uses: ../
+      uses: ./
       #uses: drscotthawley/devblog3@master
       with:
         BOOL_SAVE_MARKDOWN: false
