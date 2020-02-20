@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: Scott H. Hawley
-description: An alernate copy of my development blog, using fastpages.
+description: An alternate copy of my development blog, using fastpages.
 github_username: drscotthawley
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "devblog3"
