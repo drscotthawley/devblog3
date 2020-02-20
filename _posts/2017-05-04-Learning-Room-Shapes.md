@@ -1,3 +1,9 @@
+```yaml
+---
+toc: true
+---
+```
+
 # Learning Room Shapes (with Neural Networks)
 
 *'Deep' neural network learns (boxy) room shape given mode frequencies, or vice versa.*
