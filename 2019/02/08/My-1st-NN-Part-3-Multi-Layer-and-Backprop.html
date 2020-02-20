@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>My First NN Part 3. Multi-Layer Networks and Backpropagation | Scott H. Hawley</title>
+<title>My First NN Part 3. Multi-Layer Networks and Backpropagation | Scott H. Hawley (temp. alt. blog via fastpages)</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="My First NN Part 3. Multi-Layer Networks and Backpropagation" />
 <meta property="og:locale" content="en_US" />
@@ -11,7 +11,7 @@
 <meta property="og:description" content="Multi-Layer Networks and Backpropagation" />
 <link rel="canonical" href="https://drscotthawley.github.io/devblog3/2019/02/08/My-1st-NN-Part-3-Multi-Layer-and-Backprop.html" />
 <meta property="og:url" content="https://drscotthawley.github.io/devblog3/2019/02/08/My-1st-NN-Part-3-Multi-Layer-and-Backprop.html" />
-<meta property="og:site_name" content="Scott H. Hawley" />
+<meta property="og:site_name" content="Scott H. Hawley (temp. alt. blog via fastpages)" />
 <meta property="og:image" content="https://i.imgur.com/WjaQDnW.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-02-08T00:00:00-06:00" />
@@ -21,7 +21,7 @@
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
   <link rel="stylesheet" href="/devblog3/assets/main.css">
-  <script src="https://kit.fontawesome.com/4f6d78d8ce.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://drscotthawley.github.io/devblog3/feed.xml" title="Scott H. Hawley" />
+  <script src="https://kit.fontawesome.com/4f6d78d8ce.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://drscotthawley.github.io/devblog3/feed.xml" title="Scott H. Hawley (temp. alt. blog via fastpages)" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
@@ -69,7 +69,7 @@
   </script>
 </head><body><header class="site-header" role="banner">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/devblog3/">Scott H. Hawley</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/devblog3/">Scott H. Hawley (temp. alt. blog via fastpages)</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -161,6 +161,7 @@
 <a href="https://colab.research.google.com/drive/1O9xcdAQUxo7KdVhbggqLCvabc77Rj-yH">Part 2</a>,
 <a href="https://colab.research.google.com/drive/1UZDEK-3v-SWxpDYBfamBoD4xhy7H2DEZ#scrollTo=14tOCcvT_a0I">Part 3</a></p>
 <h2 id="What-is-Backpropagation?">What is Backpropagation?<a class="anchor-link" href="#What-is-Backpropagation?">&#182;</a></h2><p>First watch this <a href="https://www.youtube.com/watch?v=q555kfIFUCM">5-minute video on backprop by Siraj Raval</a>.</p>
+<p><strong>EDIT 2/20/2020:</strong> ^Ravel was later revealed to be plagiarizing content. I will look for an alternative link.  The format in <a href="https://hedges.belmont.edu/~shawley/PHY2895/">my ("flipped") ML course last year</a> involved reading things, watching <em>brief</em> videos, and modifying code. Siraj's video fit the bill last year as being <em>brief</em> &amp; <em>good</em>.</p>
 
 </div>
 </div>
@@ -178,7 +179,7 @@
 <li>Some will speak of "activation layers."  In software libraries like Keras, many different types of operations and storage are referred to as layers.</li>
 </ol>
 <p>For the work we've done so far, we've had inputs and outputs connected by one weight matrix, subject to a nonlinear activation function.  Is this a two-layer network made of input and output "layers,"" or is it a single-layer network, because there is only one weight matrix?  What about the activation layer?  This is to some degree a semantic issue which one does not need to get hung up on.</p>
-<p><strong>For our purposes</strong> it is convenient to refer to the inputs $X$, the 'activated' hiddent states $H$, and the output $\tilde{Y}$ as "layers", numbering them 0, 1, and 2 respectively, and using the script notation $\mathcal{L}^l$ to denote each layer, where the layer index $l=0..2$, so that</p>
+<p><strong>For our purposes</strong> it is convenient to refer to the inputs $X$, the 'activated' hidden states $H$, and the output $\tilde{Y}$ as "layers", numbering them 0, 1, and 2 respectively, and using the script notation $\mathcal{L}^l$ to denote each layer, where the layer index $l=0..2$, so that</p>
 $$
 \mathcal{L}^{(0)} = X, \ \ \ \ \mathcal{L}^{(1)} = H,\ \ \ \ \mathcal{L}^{(2)} = \tilde{Y}
 $$<p>This makes it easy to write the value of higher-numbered layers in terms of lower-numbed layers, i.e.,
@@ -2310,12 +2311,12 @@ SUVORK5CYII=
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Scott H. Hawley</h2>
+    <h2 class="footer-heading">Scott H. Hawley (temp. alt. blog via fastpages)</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">Scott H. Hawley</li></ul>
+          <li class="p-name">Scott H. Hawley (temp. alt. blog via fastpages)</li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list">
@@ -2323,7 +2324,7 @@ SUVORK5CYII=
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>An alternate copy of my development blog, using fastpages.</p>
+        <p>An alternate copy of my development blog, using fastpages. If successful I will replace the main blog with this</p>
       </div>
     </div>
 
