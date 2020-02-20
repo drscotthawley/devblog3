@@ -61,6 +61,22 @@ print(1+1)
 
     2
 
+
+More code:
+
+```python
+import numpy as np
+import cv2
+
+n_images = 2000
+size_x, size_y = 100, 100
+for i in range(n_images):
+    arr = 255*np.random.rand(size_x,size_y)
+    filename = 'image_'+str(i)+'.png'
+    print("writing file ",filename)
+    cv2.imwrite(filename,arr)
+```
+
 ## Tables
 
 | Column 1 | Column 2 |
@@ -78,4 +94,3 @@ print(1+1)
 
 
 [^1]: This is the footnote.
-
