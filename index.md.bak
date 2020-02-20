@@ -3,17 +3,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Scott H. Hawley | An alernate copy of my development blog, using fastpages.</title>
+<title>Scott H. Hawley | An alternate copy of my development blog, using fastpages.</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="Scott H. Hawley" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="An alernate copy of my development blog, using fastpages." />
-<meta property="og:description" content="An alernate copy of my development blog, using fastpages." />
+<meta name="description" content="An alternate copy of my development blog, using fastpages." />
+<meta property="og:description" content="An alternate copy of my development blog, using fastpages." />
 <link rel="canonical" href="https://drscotthawley.github.io/devblog3/index.md.bak" />
 <meta property="og:url" content="https://drscotthawley.github.io/devblog3/index.md.bak" />
 <meta property="og:site_name" content="Scott H. Hawley" />
 <script type="application/ld+json">
-{"description":"An alernate copy of my development blog, using fastpages.","@type":"WebPage","url":"https://drscotthawley.github.io/devblog3/index.md.bak","headline":"Scott H. Hawley","@context":"https://schema.org"}</script>
+{"description":"An alternate copy of my development blog, using fastpages.","@type":"WebPage","url":"https://drscotthawley.github.io/devblog3/index.md.bak","headline":"Scott H. Hawley","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -182,7 +182,7 @@ And you can include links, like this [link to fast.ai](https://www.fast.ai). Pos
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>An alernate copy of my development blog, using fastpages.</p>
+        <p>An alternate copy of my development blog, using fastpages.</p>
       </div>
     </div>
 
