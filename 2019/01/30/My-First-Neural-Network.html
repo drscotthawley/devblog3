@@ -117,24 +117,24 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#The-Sample-Problem">The Sample Problem¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Actual-Code">Actual Code¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Change-the-activation-function">Change the activation function¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Exercise:-Read-a-7-segment-display">Exercise: Read a 7-segment display¶</a>
+<li class="toc-entry toc-h2"><a href="#The-Sample-Problem">The Sample Problem </a></li>
+<li class="toc-entry toc-h2"><a href="#Actual-Code">Actual Code </a></li>
+<li class="toc-entry toc-h2"><a href="#Change-the-activation-function">Change the activation function </a></li>
+<li class="toc-entry toc-h2"><a href="#Exercise:-Read-a-7-segment-display">Exercise: Read a 7-segment display </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Diagram-of-the-network">Diagram of the network¶</a></li>
-<li class="toc-entry toc-h3"><a href="#Create-the-dataset">Create the dataset¶</a></li>
-<li class="toc-entry toc-h3"><a href="#Initialize-the-weights">Initialize the weights¶</a></li>
-<li class="toc-entry toc-h3"><a href="#Train-the-network">Train the network¶</a></li>
+<li class="toc-entry toc-h3"><a href="#Diagram-of-the-network">Diagram of the network </a></li>
+<li class="toc-entry toc-h3"><a href="#Create-the-dataset">Create the dataset </a></li>
+<li class="toc-entry toc-h3"><a href="#Initialize-the-weights">Initialize the weights </a></li>
+<li class="toc-entry toc-h3"><a href="#Train-the-network">Train the network </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Final-Check:-Keras-version">Final Check: Keras version¶</a></li>
-<li class="toc-entry toc-h1"><a href="#Follow-up:-Remarks">Follow-up: Remarks¶</a>
+<li class="toc-entry toc-h2"><a href="#Final-Check:-Keras-version">Final Check: Keras version </a></li>
+<li class="toc-entry toc-h1"><a href="#Follow-up:-Remarks">Follow-up: Remarks </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Re-stating-what-we-just-did">Re-stating what we just did¶</a></li>
-<li class="toc-entry toc-h3"><a href="#One-thing-we-glossed-over:-"batch-size"">One thing we glossed over: &quot;batch size&quot;¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Optional:-If-you-want-to-go-really-crazy">Optional: If you want to go really crazy¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding">Additional Optional Exercise: Binary Math vs. One-Hot Encoding¶</a></li>
+<li class="toc-entry toc-h3"><a href="#Re-stating-what-we-just-did">Re-stating what we just did </a></li>
+<li class="toc-entry toc-h3"><a href="#One-thing-we-glossed-over:-"batch-size"">One thing we glossed over: &quot;batch size&quot; </a></li>
+<li class="toc-entry toc-h2"><a href="#Optional:-If-you-want-to-go-really-crazy">Optional: If you want to go really crazy </a></li>
+<li class="toc-entry toc-h2"><a href="#Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding">Additional Optional Exercise: Binary Math vs. One-Hot Encoding </a></li>
 </ul>
 </li>
 </ul><!--
@@ -163,7 +163,7 @@
 <a href="https://colab.research.google.com/drive/1UZDEK-3v-SWxpDYBfamBoD4xhy7H2DEZ#scrollTo=14tOCcvT_a0I">Part 3</a></p>
 <p>We will be reproducing work from Andrew Trask's excellent tutorial <a href="https://iamtrask.github.io/2015/07/12/basic-python-network/">"A Neural Network in 11 lines of Python"</a>, albeit with a different emphasis, and in a different way.  You may regard this treatment and his original treatment as complimentary, and feel free to refer to both.  This lesson is written with the intent of building on the lesson about linear regression -- which we might call "Part 0" -- at the link <a href="https://drscotthawley.github.io/Following-Gravity/">"Following Gravity - ML Foundations Part Ia."</a></p>
 <h2 id="The-Sample-Problem">
-<a class="anchor" href="#The-Sample-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Sample Problem<a class="anchor-link" href="#The-Sample-Problem">¶</a>
+<a class="anchor" href="#The-Sample-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Sample Problem<a class="anchor-link" href="#The-Sample-Problem"> </a>
 </h2>
 <p>Consider a system that tries to map groups of 3 inputs to some corresponding output which is a single number. In the following picture, we'll show each set of 3 inputs as a row of a matrix $X$, and each output as the corresponding row of $Y$:</p>
 $$ \overbrace{
@@ -248,7 +248,7 @@ w = w - \alpha  X^T \cdot \left( [\tilde{Y}-Y]*\tilde{Y}*(1-\tilde{Y})\right)
 $$<p>where the $\cdot$ denotes a matrix-matrix product (i.e. a dot product for successive rows of $X^T$) and $*$ denotes elementwise multiplication.</p>
 <p>To clarify the above expression in terms of matrix dimensions, we can see that $w$, a 3x1 matrix, can be made by multipyting $X^T$ (a 3 x4 matrix) with the term in parentheses, i.e. the product of elementwise terms involving $\tilde{Y}$, which is a 4x1 matrix.  In other words, a 3x4 matrix, times a 4x1 matrix, yields a 3x1 matrix.</p>
 <h2 id="Actual-Code">
-<a class="anchor" href="#Actual-Code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Actual Code<a class="anchor-link" href="#Actual-Code">¶</a>
+<a class="anchor" href="#Actual-Code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Actual Code<a class="anchor-link" href="#Actual-Code"> </a>
 </h2>
 <p>The full code for all of this is then...</p>
 
@@ -389,7 +389,7 @@ weights =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Change-the-activation-function">
-<a class="anchor" href="#Change-the-activation-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change the activation function<a class="anchor-link" href="#Change-the-activation-function">¶</a>
+<a class="anchor" href="#Change-the-activation-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change the activation function<a class="anchor-link" href="#Change-the-activation-function"> </a>
 </h2>
 <p>Another popular choice of activation function is the <em>rectified linear unit</em> or ReLU.  The function ReLU(x) is zero for x &lt;= 0, and equal to x (i.e. a straight line at 45 degrees for)  x &gt;0.  It can be written as max(x,0) or  x * (x&gt;0), and its derivative is 1 for positive x, and zero otherwise.</p>
 <p><a href="https://www.desmos.com/calculator/vjqfxlgmzl">Click here to see a graph of ReLU</a></p>
@@ -559,18 +559,18 @@ weights =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Exercise:-Read-a-7-segment-display">
-<a class="anchor" href="#Exercise:-Read-a-7-segment-display" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exercise: Read a 7-segment display<a class="anchor-link" href="#Exercise:-Read-a-7-segment-display">¶</a>
+<a class="anchor" href="#Exercise:-Read-a-7-segment-display" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exercise: Read a 7-segment display<a class="anchor-link" href="#Exercise:-Read-a-7-segment-display"> </a>
 </h2>
 <p>A <a href="https://en.wikipedia.org/wiki/Seven-segment_display">7-segment display</a> is used for displaying numerical digits 0 through 9, usually by lighting up LEDs or parts of a liquid crystal display (LCD).  The segments are labelled $a$ through $g$ according to the following diagram:</p>
 <p><img src="https://i.imgur.com/ZyHGDKy.png%20=100x150" alt="7-segment diagram"></p>
 <h3 id="Diagram-of-the-network">
-<a class="anchor" href="#Diagram-of-the-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diagram of the network<a class="anchor-link" href="#Diagram-of-the-network">¶</a>
+<a class="anchor" href="#Diagram-of-the-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diagram of the network<a class="anchor-link" href="#Diagram-of-the-network"> </a>
 </h3>
 <p>The 7 inputs "a" through "g" will be mapped to 10 outputs for the individual digits, and each output can range from 0 ("false" or "no") to 1 ("true" or "yes") for that digit.  The input and outputs will be connected by a matrix of weights.  Pictorially, this looks like the following (Not shown: activation function $f$):</p>
 <p><img src="https://i.imgur.com/mERzmFE.png" alt="diagram of 7-seg network"></p>
 <p>...where again, this network operates on a single data point at a time, datapoints which are <em>rows</em> of <em>X</em> and <em>Y</em>.  What is shown in the above diagram are the <em>columns</em> of $X$ and $Y$ for a single row (/ single data point).</p>
 <h3 id="Create-the-dataset">
-<a class="anchor" href="#Create-the-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create the dataset<a class="anchor-link" href="#Create-the-dataset">¶</a>
+<a class="anchor" href="#Create-the-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create the dataset<a class="anchor-link" href="#Create-the-dataset"> </a>
 </h3>
 <p>Let the input X be the segments $a$ through $g$ are the columns of the input $X$, and are either 1 for on or 0 for off.  Let the columns of the target $Y$ be the digits 0-9 themselves arranged in a <a href="https://machinelearningmastery.com/why-one-hot-encode-data-in-machine-learning/">"one hot" encoding</a> scheme, as follows:</p>
 <p></p>
@@ -636,7 +636,7 @@ weights =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Initialize-the-weights">
-<a class="anchor" href="#Initialize-the-weights" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialize the weights<a class="anchor-link" href="#Initialize-the-weights">¶</a>
+<a class="anchor" href="#Initialize-the-weights" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialize the weights<a class="anchor-link" href="#Initialize-the-weights"> </a>
 </h3>
 <p>Previously the dimensions of the weight matrix $w$ were 3x1 because we were mapping each row of 3 elements in $X$ to each row of 1 element of $Y$.  For this new problem,
 each row of $X$ has 7 elements, and we want to map those to the 10 elements in each 1-hot-encoded row of $Y$, so what should the dimensions of the weights matrix $w$ be?</p>
@@ -686,7 +686,7 @@ each row of $X$ has 7 elements, and we want to map those to the 10 elements in e
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Train-the-network">
-<a class="anchor" href="#Train-the-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Train the network<a class="anchor-link" href="#Train-the-network">¶</a>
+<a class="anchor" href="#Train-the-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Train the network<a class="anchor-link" href="#Train-the-network"> </a>
 </h3>
 <p>Having created an $X$ and its matching $Y$, and initalized the weights $w$ randomly, train a neural network such as the ones above to learn to map a row of X to a row of Y, i.e. train it to recognize digits on 7-segment displays.  Do this below.</p>
 
@@ -723,7 +723,7 @@ each row of $X$ has 7 elements, and we want to map those to the 10 elements in e
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Final-Check:-Keras-version">
-<a class="anchor" href="#Final-Check:-Keras-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Final Check: Keras version<a class="anchor-link" href="#Final-Check:-Keras-version">¶</a>
+<a class="anchor" href="#Final-Check:-Keras-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Final Check: Keras version<a class="anchor-link" href="#Final-Check:-Keras-version"> </a>
 </h2>
 <p><a href="https://keras.io/">Keras</a> is a neural network library that lets us write NN applications very compactly.  Try running the following using the X and Y from your 7-segment dataset:</p>
 
@@ -762,15 +762,15 @@ each row of $X$ has 7 elements, and we want to map those to the 10 elements in e
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Follow-up:-Remarks">
-<a class="anchor" href="#Follow-up:-Remarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Follow-up: Remarks<a class="anchor-link" href="#Follow-up:-Remarks">¶</a>
+<a class="anchor" href="#Follow-up:-Remarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Follow-up: Remarks<a class="anchor-link" href="#Follow-up:-Remarks"> </a>
 </h1>
 <h3 id="Re-stating-what-we-just-did">
-<a class="anchor" href="#Re-stating-what-we-just-did" aria-hidden="true"><span class="octicon octicon-link"></span></a>Re-stating what we just did<a class="anchor-link" href="#Re-stating-what-we-just-did">¶</a>
+<a class="anchor" href="#Re-stating-what-we-just-did" aria-hidden="true"><span class="octicon octicon-link"></span></a>Re-stating what we just did<a class="anchor-link" href="#Re-stating-what-we-just-did"> </a>
 </h3>
 <p>The original problem (posed at the top of this notebook) involves mapping some points from a 3-dimensional space into points in a 1-dimensional space, i.e. to points on the number line.  The mapping is done by the combination of a weighted sum (a linear operation) and a nonlinear "<a href="https://en.wikipedia.org/wiki/Activation_function">activation function</a>" applied to that sum. The use of an activation function like a sigmoid was originally intended to serve as an analogy of activation of biological neurons.   Nonlinear activation functions are source of the "power" of neural networks  (essentially we approximate some other function by means of a sum of <em>basis functions</em> in some <a href="https://en.wikipedia.org/wiki/Function_space">function space</a>, but don't worry about that if you're not math-inclined).   The algorithm 'learns' to approximate this operation via supervised learning and gradient descent according to some loss function.  We used the mean squared error (MSE) for our loss, but <a href="https://towardsdatascience.com/common-loss-functions-in-machine-learning-46af0ffc4d23">lots</a> and <a href="https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0">lots</a> of different loss functions could be used, a few of which we'll look at another time.</p>
 <p><strong>Question for reflection:</strong> Unlike fitting a line $y = mx+b$, the weighted sum in our models in this notebook had no constant "bias" term like $b$. How might we include such a term?</p>
 <h3 id='One-thing-we-glossed-over:-"batch-size"'>
-<a class="anchor" href="#One-thing-we-glossed-over:-" batch-size aria-hidden="true"><span class="octicon octicon-link"></span></a>One thing we glossed over: "<a href="https://www.youtube.com/watch?v=vVX9vld3vrY">batch size</a>"<a class="anchor-link" href="#One-thing-we-glossed-over:-%22batch-size%22">¶</a>
+<a class="anchor" href="#One-thing-we-glossed-over:-" batch-size aria-hidden="true"><span class="octicon octicon-link"></span></a>One thing we glossed over: "<a href="https://www.youtube.com/watch?v=vVX9vld3vrY">batch size</a>"<a class="anchor-link" href="#One-thing-we-glossed-over:-%22batch-size%22"> </a>
 </h3>
 <p>Question: Should we apply the gradient descent "update" to the weights <em>each time</em> we process a single row of $X$ &amp; $Y$, or should we compute the combined loss of all the rows together at the same time, and <em>then</em> do the update?   This is essentially asking the same question as "When fitting a line $mx+b$ to a bunch of data points, should we use all the points together to update $m$ and $b,$ or should we do this one point at a time -- compute the gradients of the loss at one point, update the weights, compute gradients at another point, etc.?"</p>
 <p>The number of points you use is called the <em>batch size</em> and it is what's known as a "hyperparameter" -- it is not part of the model <em>per se</em>, but it is a(n important) choice <em>you</em> make when training the model.  The batch size affects the learning as follows:   Averaging the gradints for  many data points (i..e. a large batch size) will produce a smoother loss function and will also usually make the code execute more quickly through the dataset, but updating the weights for every point will cause the algorithm to learn with fewer iterations.</p>
@@ -787,7 +787,7 @@ each row of $X$ has 7 elements, and we want to map those to the 10 elements in e
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Optional:-If-you-want-to-go-really-crazy">
-<a class="anchor" href="#Optional:-If-you-want-to-go-really-crazy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional: If you want to go really crazy<a class="anchor-link" href="#Optional:-If-you-want-to-go-really-crazy">¶</a>
+<a class="anchor" href="#Optional:-If-you-want-to-go-really-crazy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional: If you want to go really crazy<a class="anchor-link" href="#Optional:-If-you-want-to-go-really-crazy"> </a>
 </h2>
 <p>How about training on this dataset:
 $$ \overbrace{
@@ -826,7 +826,7 @@ Hint 2: This whole lesson could instead be entitled "My First Artificial Neuron.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding">
-<a class="anchor" href="#Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Additional Optional Exercise: Binary Math vs. One-Hot Encoding<a class="anchor-link" href="#Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding">¶</a>
+<a class="anchor" href="#Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Additional Optional Exercise: Binary Math vs. One-Hot Encoding<a class="anchor-link" href="#Additional-Optional-Exercise:-Binary-Math-vs.-One-Hot-Encoding"> </a>
 </h2>
 <p>For the 7-segment display, we used a one-hot encoding for our output, namely a set of true/false "bits" for each digit.  One may wonder how effective this ouput-encoding method is, compared to a different bit-setting encoding method, namely binary representations.</p>
 <ol>

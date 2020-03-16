@@ -135,9 +135,9 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://drscotthawley.github.io/images/FG-images/header_image.jpg" alt="header_img" /><p style="text-align: right">*Image credit: NASA*</p></p>
-<h6 id="Preface:-I'm-writing-this-for-myself,-current-students-&amp;-ASPIRE-collaborators,-and-to-'give-back'-to-the-internet-community.---I-recently-had-insight-into-my-'main'-research-problem,-but-started-to-hit-a-snag-so-decided-to-return-to--foundations.--Going-back-to-basics-can-be-a-good-way-to-move-forward...">Preface: I'm writing this for myself, current students &amp; <a href="http://aspirecoop.github.io">ASPIRE</a> collaborators, and to 'give back' to the internet community.   I recently had insight into my 'main' research problem, but started to hit a snag so decided to return to  foundations.  Going back to basics can be a good way to move forward...<a class="anchor-link" href="#Preface:-I'm-writing-this-for-myself,-current-students-&amp;-ASPIRE-collaborators,-and-to-'give-back'-to-the-internet-community.---I-recently-had-insight-into-my-'main'-research-problem,-but-started-to-hit-a-snag-so-decided-to-return-to--foundations.--Going-back-to-basics-can-be-a-good-way-to-move-forward...">&#182;</a></h6><p>By the end of this session, we will -- as an example problem -- have used the 1-dimensional path of an object in the presesece of gravity, to  'train' a system to correctly infer (i.e. to 'learn') the constants of the motion -- initial position and velocity, and the acceleration due to gravity.  Hopefully we learn a few other things along the way. ;-)</p>
+<h6 id="Preface:-I'm-writing-this-for-myself,-current-students-&amp;-ASPIRE-collaborators,-and-to-'give-back'-to-the-internet-community.---I-recently-had-insight-into-my-'main'-research-problem,-but-started-to-hit-a-snag-so-decided-to-return-to--foundations.--Going-back-to-basics-can-be-a-good-way-to-move-forward...">Preface: I'm writing this for myself, current students &amp; <a href="http://aspirecoop.github.io">ASPIRE</a> collaborators, and to 'give back' to the internet community.   I recently had insight into my 'main' research problem, but started to hit a snag so decided to return to  foundations.  Going back to basics can be a good way to move forward...<a class="anchor-link" href="#Preface:-I'm-writing-this-for-myself,-current-students-&amp;-ASPIRE-collaborators,-and-to-'give-back'-to-the-internet-community.---I-recently-had-insight-into-my-'main'-research-problem,-but-started-to-hit-a-snag-so-decided-to-return-to--foundations.--Going-back-to-basics-can-be-a-good-way-to-move-forward..."> </a></h6><p>By the end of this session, we will -- as an example problem -- have used the 1-dimensional path of an object in the presesece of gravity, to  'train' a system to correctly infer (i.e. to 'learn') the constants of the motion -- initial position and velocity, and the acceleration due to gravity.  Hopefully we learn a few other things along the way. ;-)</p>
 <p><em>In the next installment, "Part Ib," we'll derive the differential equation of motion, and in then in "Part II" we'll adapt the techniques we've learned here to do signal processing.</em></p>
-<h2 id="Optimization-Basics:-Gradient-Descent">Optimization Basics: Gradient Descent<a class="anchor-link" href="#Optimization-Basics:-Gradient-Descent">&#182;</a></h2><p>Let's put the "sample problem" aside for now, and talk about the general problem of optimization.   Often we may wish to minimize some function $f(x)$.  In science, doing so may enable us to fit a curve to our data, as we'll do below.   Similarly,'machine learning' systems often operate on the basis of minimizing a 'cost' function to discern patterns in complex datasets.</p>
+<h2 id="Optimization-Basics:-Gradient-Descent">Optimization Basics: Gradient Descent<a class="anchor-link" href="#Optimization-Basics:-Gradient-Descent"> </a></h2><p>Let's put the "sample problem" aside for now, and talk about the general problem of optimization.   Often we may wish to minimize some function $f(x)$.  In science, doing so may enable us to fit a curve to our data, as we'll do below.   Similarly,'machine learning' systems often operate on the basis of minimizing a 'cost' function to discern patterns in complex datasets.</p>
 <p>Thus we want to find the value of $x$ for which $f(x)$ is the smallest.  A graph of such a function might look like this...</p>
 <p><em>(Python code follows, to make the graph)</em></p>
 
@@ -865,7 +865,7 @@ AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Challenge:-Instability">Challenge: Instability<a class="anchor-link" href="#Challenge:-Instability">&#182;</a></h3><p>You may have noticed, if you made the learning rate too large, that the algorithm does <em>not</em> converge to the solution but instead 'blows up'.   This is the 'flip side' of the 'adaptive step size' feature of this algorithm:  If you jump "across" the minimum to the other side and end up a greater distance from the minimum that where you started, you will encounter an even larger gradient, which will lead to an even larger $\Delta x$, and so on.</p>
+<h3 id="Challenge:-Instability">Challenge: Instability<a class="anchor-link" href="#Challenge:-Instability"> </a></h3><p>You may have noticed, if you made the learning rate too large, that the algorithm does <em>not</em> converge to the solution but instead 'blows up'.   This is the 'flip side' of the 'adaptive step size' feature of this algorithm:  If you jump "across" the minimum to the other side and end up a greater distance from the minimum that where you started, you will encounter an even larger gradient, which will lead to an even larger $\Delta x$, and so on.</p>
 <p>We can see this with the same code from before, let's just use a different starting point and a step size that's clearly too large...</p>
 
 </div>
@@ -1659,7 +1659,7 @@ WjvL17YpSkmjKwNFURRFYwaKoiiKioGiKIqCioGiKIqCioGiKIqCioGiKIqCioGiKIqCioGiKIoC
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Challenge:-Non-global-minima">Challenge: Non-global minima<a class="anchor-link" href="#Challenge:-Non-global-minima">&#182;</a></h3><p>To explore more complicated functions, we're going to take advantage of the SymPy package, to let it take derivatives for us.  Try executing the import in the next cell, and if nothing happens it means you have SymPy installed.  If you get an error, you may need to go into a Terminal and run "<code>pip install sympy</code>".</p>
+<h3 id="Challenge:-Non-global-minima">Challenge: Non-global minima<a class="anchor-link" href="#Challenge:-Non-global-minima"> </a></h3><p>To explore more complicated functions, we're going to take advantage of the SymPy package, to let it take derivatives for us.  Try executing the import in the next cell, and if nothing happens it means you have SymPy installed.  If you get an error, you may need to go into a Terminal and run "<code>pip install sympy</code>".</p>
 
 </div>
 </div>
@@ -2091,7 +2091,7 @@ USAAjCgQAEYUCAAjCgSAkV+5ot33QiqbAQAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Multidimensional-Gradient-Descent">Multidimensional Gradient Descent<a class="anchor-link" href="#Multidimensional-Gradient-Descent">&#182;</a></h3><p><em>(A descent into darkness...)</em></p>
+<h3 id="Multidimensional-Gradient-Descent">Multidimensional Gradient Descent<a class="anchor-link" href="#Multidimensional-Gradient-Descent"> </a></h3><p><em>(A descent into darkness...)</em></p>
 <p>Let's define a function of two variables, that's got at least one minimum in it.  We'll choose
 $$f(x,y) = -\left( \cos x + 3\cos y \right) /2,$$
 which actually has infinitely many minima, but we'll try to 'zoom in' on just one.</p>
@@ -2775,9 +2775,9 @@ KIoi0IZRURRFoA2joiiK4P8D149GEt3GTDIAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Least-Squares-Regression">Least Squares Regression<a class="anchor-link" href="#Least-Squares-Regression">&#182;</a></h2><p>This is such a common thing to do in science and statistics, that everyone should learn how it works.  We'll do it for linear relationships, but it generalizes to nonlinear situations as well.</p>
-<h3 id="How-to-Fit-a-Line">How to Fit a Line<a class="anchor-link" href="#How-to-Fit-a-Line">&#182;</a></h3><p>Let's say we're trying to fit a line to a bunch of data.  We've been given $n$ data points with coordinates $(x_i,y_i)$ where $i=1..n$.  The problem becomes, given a line $f(x) = mx+b$, find the values of the parameters $m$ and $b$ which minimize the overall "error".</p>
-<h4 id="add-some-kinda-picture-here?">add some kinda picture here?<a class="anchor-link" href="#add-some-kinda-picture-here?">&#182;</a></h4><p>The error can take many forms; one is the squared error $SE$, which is just the sum of the squares of the "distances" between each data point's $y$-value and the "guess" from the line fit $f$ at each value of $x$:</p>
+<h2 id="Least-Squares-Regression">Least Squares Regression<a class="anchor-link" href="#Least-Squares-Regression"> </a></h2><p>This is such a common thing to do in science and statistics, that everyone should learn how it works.  We'll do it for linear relationships, but it generalizes to nonlinear situations as well.</p>
+<h3 id="How-to-Fit-a-Line">How to Fit a Line<a class="anchor-link" href="#How-to-Fit-a-Line"> </a></h3><p>Let's say we're trying to fit a line to a bunch of data.  We've been given $n$ data points with coordinates $(x_i,y_i)$ where $i=1..n$.  The problem becomes, given a line $f(x) = mx+b$, find the values of the parameters $m$ and $b$ which minimize the overall "error".</p>
+<h4 id="add-some-kinda-picture-here?">add some kinda picture here?<a class="anchor-link" href="#add-some-kinda-picture-here?"> </a></h4><p>The error can take many forms; one is the squared error $SE$, which is just the sum of the squares of the "distances" between each data point's $y$-value and the "guess" from the line fit $f$ at each value of $x$:</p>
 $$ SE = (f(x_1) - y_1)^2 + (f(x_2) - y_2)^2 + ... (f(x_n)-y_n)^2,$$<p>We can write this concisely as
 $$ SE = \sum_{i=1}^n (f(x_i)-y_i)^2.$$</p>
 <p>Another popular form is the "mean squared error" $MSE$, which is just $SE/n$:</p>
@@ -3721,7 +3721,7 @@ iSgUREQkolAQEZGIQkFERCIKBRERifx/Fkp7VoWTuCoAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Great!</p>
-<h3 id="Least-Squares-Fitting-with-Nonlinear-Functions">Least Squares Fitting with Nonlinear Functions<a class="anchor-link" href="#Least-Squares-Fitting-with-Nonlinear-Functions">&#182;</a></h3><p>We can generalize the technique describe above to fit polynomials 
+<h3 id="Least-Squares-Fitting-with-Nonlinear-Functions">Least Squares Fitting with Nonlinear Functions<a class="anchor-link" href="#Least-Squares-Fitting-with-Nonlinear-Functions"> </a></h3><p>We can generalize the technique describe above to fit polynomials 
 $$ f(x) = c_0 + c_1 x + c_2 x^2 + ...c_k x^k,$$
 where $c_0...c_k$ are the parameters we will tune, and $k$ is the order of the polynomial. (Typically people use the letter $a$ for polynomial coefficients, but in the math rendering of Jupter, $\alpha$ and $a$ look too much alike, so we'll use $c$.) Written more succinctly,
 $$ f(x) = \sum_{j=0}^k c_j x^j.$$</p>
@@ -4082,7 +4082,7 @@ QmCC
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Learning-Gravity">Learning Gravity<a class="anchor-link" href="#Learning-Gravity">&#182;</a></h2><p>Ok. Now we're all we're going to do next is fit a parabola to the motion of a falling ball -- and that's supposed to tell us something deep about physics. Sounds silly, right?  'Everybody' knows objects moving in a gravitational field follow parabolas (both in space &amp; time); the more math-savvy may complain that we're simply going to 'get out of this' what we 'put into it.'</p>
+<h2 id="Learning-Gravity">Learning Gravity<a class="anchor-link" href="#Learning-Gravity"> </a></h2><p>Ok. Now we're all we're going to do next is fit a parabola to the motion of a falling ball -- and that's supposed to tell us something deep about physics. Sounds silly, right?  'Everybody' knows objects moving in a gravitational field follow parabolas (both in space &amp; time); the more math-savvy may complain that we're simply going to 'get out of this' what we 'put into it.'</p>
 <p>Well, from a philosophical standpoint and from the way that these methods will generalize to other situations, there are significant implications from the <em>methodology</em> we're about to follow.</p>
 <p><strong>The Challenge</strong>: Given a set of one-dimensional data of position vs. time $y(t)$, can we find the underlying equation that gives rise to it?  Better put, can we fit a model to it, and how well can we fit it, and what kind of model will it be anyway?</p>
 <p>(This is the sort of thing that statisticians <em>do</em>, but it's also something physicists do, and one could argue, this is what <em>everybody</em> does <em>all the time</em>. )</p>
@@ -4633,7 +4633,7 @@ As an example, you can check your answer against <a href="http://hedges.belmont.
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><hr /></p>
-<h2 id="Afterward:-Alternatives-to-&quot;Simple&quot;-Gradient-Descent">Afterward: Alternatives to "Simple" Gradient Descent<a class="anchor-link" href="#Afterward:-Alternatives-to-&quot;Simple&quot;-Gradient-Descent">&#182;</a></h2><p>There are <em>lots</em> of schemes that incorporate more sophisticated approaches in order to achieve convergence more reliabily and more quickly than the "simple" gradient descent we've been doing.</p>
+<h2 id="Afterward:-Alternatives-to-&quot;Simple&quot;-Gradient-Descent">Afterward: Alternatives to "Simple" Gradient Descent<a class="anchor-link" href="#Afterward:-Alternatives-to-&quot;Simple&quot;-Gradient-Descent"> </a></h2><p>There are <em>lots</em> of schemes that incorporate more sophisticated approaches in order to achieve convergence more reliabily and more quickly than the "simple" gradient descent we've been doing.</p>
 <p>Such schemes introduce concepts such as "momentum" and go by names such as Adagrad, Adadelta, Adam, RMSProp, etc... For an excellent overview of such methods, I recommend <a href="http://sebastianruder.com/optimizing-gradient-descent/">Sebastian Ruder's blog post</a> which includes some great animations!</p>
 
 </div>

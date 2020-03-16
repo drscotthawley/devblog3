@@ -117,30 +117,30 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#What-is-Backpropagation?">What is Backpropagation?¶</a></li>
-<li class="toc-entry toc-h2"><a href="#A-Multi-Layer-Network">A Multi-Layer Network¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Semantics:-What-is-a-Layer?">Semantics: What is a Layer?¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Figuring-out-dimensions-of-the-weights">Figuring out dimensions of the weights¶</a></li>
-<li class="toc-entry toc-h2"><a href="#..a-bit-of-code">..a bit of code¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Backpropagating:-Theory">Backpropagating: Theory¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Writing-the-Backprop-Code">Writing the Backprop Code¶</a></li>
-<li class="toc-entry toc-h2"><a href="#Solving-XOR">Solving XOR¶</a></li>
-<li class="toc-entry toc-h1"><a href="#Same-thing-using-neural-network-libraries-Keras-&-PyTorch.">Same thing using neural network libraries Keras &amp; PyTorch.¶</a>
+<li class="toc-entry toc-h2"><a href="#What-is-Backpropagation?">What is Backpropagation? </a></li>
+<li class="toc-entry toc-h2"><a href="#A-Multi-Layer-Network">A Multi-Layer Network </a></li>
+<li class="toc-entry toc-h2"><a href="#Semantics:-What-is-a-Layer?">Semantics: What is a Layer? </a></li>
+<li class="toc-entry toc-h2"><a href="#Figuring-out-dimensions-of-the-weights">Figuring out dimensions of the weights </a></li>
+<li class="toc-entry toc-h2"><a href="#..a-bit-of-code">..a bit of code </a></li>
+<li class="toc-entry toc-h2"><a href="#Backpropagating:-Theory">Backpropagating: Theory </a></li>
+<li class="toc-entry toc-h2"><a href="#Writing-the-Backprop-Code">Writing the Backprop Code </a></li>
+<li class="toc-entry toc-h2"><a href="#Solving-XOR">Solving XOR </a></li>
+<li class="toc-entry toc-h1"><a href="#Same-thing-using-neural-network-libraries-Keras-&-PyTorch.">Same thing using neural network libraries Keras &amp; PyTorch. </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Keras-version">Keras version¶</a></li>
-<li class="toc-entry toc-h2"><a href="#PyTorch-version">PyTorch version¶</a></li>
+<li class="toc-entry toc-h2"><a href="#Keras-version">Keras version </a></li>
+<li class="toc-entry toc-h2"><a href="#PyTorch-version">PyTorch version </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Exercise:-Exploring-Hidden-Layers.">Exercise: Exploring Hidden Layers.¶</a>
+<li class="toc-entry toc-h1"><a href="#Exercise:-Exploring-Hidden-Layers.">Exercise: Exploring Hidden Layers. </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#More-with-the-7-segment-display">More with the 7-segment display¶</a>
+<li class="toc-entry toc-h2"><a href="#More-with-the-7-segment-display">More with the 7-segment display </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#A.-Explore-hidden-layer-sizes-&-activations">A. Explore hidden layer sizes &amp; activations¶</a></li>
-<li class="toc-entry toc-h3"><a href="#B.-Explore-multiple-hidden-layers">B. Explore multiple hidden layers¶</a></li>
-<li class="toc-entry toc-h3"><a href="#Assignment:">Assignment:¶</a></li>
+<li class="toc-entry toc-h3"><a href="#A.-Explore-hidden-layer-sizes-&-activations">A. Explore hidden layer sizes &amp; activations </a></li>
+<li class="toc-entry toc-h3"><a href="#B.-Explore-multiple-hidden-layers">B. Explore multiple hidden layers </a></li>
+<li class="toc-entry toc-h3"><a href="#Assignment:">Assignment: </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Preview-of-next-lesson:-MNIST">Preview of next lesson: MNIST¶</a></li>
+<li class="toc-entry toc-h2"><a href="#Preview-of-next-lesson:-MNIST">Preview of next lesson: MNIST </a></li>
 </ul>
 </li>
 </ul><!--
@@ -168,7 +168,7 @@
 <a href="https://colab.research.google.com/drive/1O9xcdAQUxo7KdVhbggqLCvabc77Rj-yH">Part 2</a>,
 <a href="https://colab.research.google.com/drive/1UZDEK-3v-SWxpDYBfamBoD4xhy7H2DEZ#scrollTo=14tOCcvT_a0I">Part 3</a></p>
 <h2 id="What-is-Backpropagation?">
-<a class="anchor" href="#What-is-Backpropagation?" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Backpropagation?<a class="anchor-link" href="#What-is-Backpropagation?">¶</a>
+<a class="anchor" href="#What-is-Backpropagation?" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Backpropagation?<a class="anchor-link" href="#What-is-Backpropagation?"> </a>
 </h2>
 <p>First watch this <a href="https://www.youtube.com/watch?v=q555kfIFUCM">5-minute video on backprop by Siraj Raval</a>.</p>
 <p><strong>EDIT 2/20/2020:</strong> ^Ravel was later revealed to be plagiarizing content. I will look for an alternative link.  The format in <a href="https://hedges.belmont.edu/~shawley/PHY2895/">my ("flipped") ML course last year</a> involved reading things, watching <em>brief</em> videos, and modifying code. Siraj's video fit the bill last year as being <em>brief</em> &amp; <em>good</em>.</p>
@@ -180,13 +180,13 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="A-Multi-Layer-Network">
-<a class="anchor" href="#A-Multi-Layer-Network" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Multi-Layer Network<a class="anchor-link" href="#A-Multi-Layer-Network">¶</a>
+<a class="anchor" href="#A-Multi-Layer-Network" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Multi-Layer Network<a class="anchor-link" href="#A-Multi-Layer-Network"> </a>
 </h2>
 <p>Between the input $X$ and output $\tilde{Y}$ of the network we encountered earlier, we now interpose a "hidden layer," connected by two sets of weights $w^{(0)}$ and $w^{(1)}$ as shown in the figure below.  This image is a bit more complicated than diagrams one might typically encounter; I wanted to be able to show and label all the different "parts."  We will explain what the various symbols mean as we continue after the figure.
 <img src="https://i.imgur.com/WjaQDnW.png" alt="image of multi-layer network"></p>
 <p>As before, the combined operation of weighted sum and nonlinear activation is referred to as a(n artificial) neuron; in the diagram above there are 4 "hidden neurons" --- or equivalently  "4 neurons in the hidden layer" --- as well as one neuron for output.  (The activations $f^{(0)}$ and $f^{(1)}$ may be the same, or they may be different.)</p>
 <h2 id="Semantics:-What-is-a-Layer?">
-<a class="anchor" href="#Semantics:-What-is-a-Layer?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Semantics: What is a Layer?<a class="anchor-link" href="#Semantics:-What-is-a-Layer?">¶</a>
+<a class="anchor" href="#Semantics:-What-is-a-Layer?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Semantics: What is a Layer?<a class="anchor-link" href="#Semantics:-What-is-a-Layer?"> </a>
 </h2>
 <p>The term "layer" in regards to neural network is not always used consistently.  You may find it used in different senses by different authors.</p>
 <ol>
@@ -216,7 +216,7 @@ where the dot $\cdot$ denotes a matrix product.   This is often referred to as a
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Figuring-out-dimensions-of-the-weights">
-<a class="anchor" href="#Figuring-out-dimensions-of-the-weights" aria-hidden="true"><span class="octicon octicon-link"></span></a>Figuring out dimensions of the weights<a class="anchor-link" href="#Figuring-out-dimensions-of-the-weights">¶</a>
+<a class="anchor" href="#Figuring-out-dimensions-of-the-weights" aria-hidden="true"><span class="octicon octicon-link"></span></a>Figuring out dimensions of the weights<a class="anchor-link" href="#Figuring-out-dimensions-of-the-weights"> </a>
 </h2>
 <p>When we learned about matrix multipliation, we remarked that most of the time in machine learning, "the trick is to get the inner dimensions to match."</p>
 <p>Let's say there are $N$ different input data "points" consisting of $M$ values each.  So the input $X$ is an $N\times M$ matrix.  And let the output $\tilde{Y}$ be a $NxP$ matrix (in our example, $P=1$).  If we were just connecting $X$ and $\tilde{Y}$ with no hidden layer, the single weights matrix would be a $M\times P$ matrix:</p>
@@ -241,7 +241,7 @@ $$<p>Compare this to the diagram above for $P=1$, $Q=4$.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="..a-bit-of-code">
-<a class="anchor" href="#..a-bit-of-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>..a bit of code<a class="anchor-link" href="#..a-bit-of-code">¶</a>
+<a class="anchor" href="#..a-bit-of-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>..a bit of code<a class="anchor-link" href="#..a-bit-of-code"> </a>
 </h2>
 <p>The layers $\mathcal{L}^l$ can be represented in Python a  list called <code>layers</code> which has a of length 3.  Similarly, our weights can be items in a list called <code>weights</code>.
 Returning to our first sample problem from Part 1:</p>
@@ -432,7 +432,7 @@ weights[1] =
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>...Now that we've achieved feed-foward operation of the network, in order to make it 'learn' or 'train', we need to compare the output value $\tilde{Y}$ (which is the same as <code>layers[2]</code> by the way) to the target value, compute the gradients of the loss function, and then backpropagate in order to update all the weights!</p>
 <h2 id="Backpropagating:-Theory">
-<a class="anchor" href="#Backpropagating:-Theory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Backpropagating: Theory<a class="anchor-link" href="#Backpropagating:-Theory">¶</a>
+<a class="anchor" href="#Backpropagating:-Theory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Backpropagating: Theory<a class="anchor-link" href="#Backpropagating:-Theory"> </a>
 </h2>
 <p><strong>TL/DR: You can skip down to the last boxed equation of this section if math scares you. You will not be required to reproduce this.  I <em>do</em> want to show you "where this stuff comes from", but if you find the derivation too intimidating, you can still progress in the course just fine.</strong></p>
 <p>Let's review how we got the gradients for $w^{(1)}$ in Part 2,
@@ -527,7 +527,7 @@ $$
 \end{array}\right.
 $$</p>
 <h2 id="Writing-the-Backprop-Code">
-<a class="anchor" href="#Writing-the-Backprop-Code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Writing the Backprop Code<a class="anchor-link" href="#Writing-the-Backprop-Code">¶</a>
+<a class="anchor" href="#Writing-the-Backprop-Code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Writing the Backprop Code<a class="anchor-link" href="#Writing-the-Backprop-Code"> </a>
 </h2>
 <p>Now we'll use the above analysis to replace the <code>update_weights()</code> function from earlier.</p>
 
@@ -674,7 +674,7 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Solving-XOR">
-<a class="anchor" href="#Solving-XOR" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solving XOR<a class="anchor-link" href="#Solving-XOR">¶</a>
+<a class="anchor" href="#Solving-XOR" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solving XOR<a class="anchor-link" href="#Solving-XOR"> </a>
 </h2>
 <p>Now let's revisit the "XOR" problem that a single neuron couldn't handle.</p>
 $$ \overbrace{
@@ -765,11 +765,11 @@ Target Y (correct answer)  = [[0 1 1 0]]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Same-thing-using-neural-network-libraries-Keras-&amp;-PyTorch.">
-<a class="anchor" href="#Same-thing-using-neural-network-libraries-Keras-&amp;-PyTorch." aria-hidden="true"><span class="octicon octicon-link"></span></a>Same thing using neural network libraries Keras &amp; PyTorch.<a class="anchor-link" href="#Same-thing-using-neural-network-libraries-Keras-&amp;-PyTorch.">¶</a>
+<a class="anchor" href="#Same-thing-using-neural-network-libraries-Keras-&amp;-PyTorch." aria-hidden="true"><span class="octicon octicon-link"></span></a>Same thing using neural network libraries Keras &amp; PyTorch.<a class="anchor-link" href="#Same-thing-using-neural-network-libraries-Keras-&amp;-PyTorch."> </a>
 </h1>
 <p>Since most of the time we won't be writing neural network systems "from scratch, by hand" in numpy, let's take a look at similar operations using libraries such as Keras or PyTorch.</p>
 <h2 id="Keras-version">
-<a class="anchor" href="#Keras-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keras version<a class="anchor-link" href="#Keras-version">¶</a>
+<a class="anchor" href="#Keras-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keras version<a class="anchor-link" href="#Keras-version"> </a>
 </h2>
 <p><a href="https://keras.io/">Keras</a> is so simple to set up, it's easy to get started. This is what the previous example for XOR looks like "in Keras":</p>
 
@@ -846,7 +846,7 @@ Y_tilde =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PyTorch-version">
-<a class="anchor" href="#PyTorch-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>PyTorch version<a class="anchor-link" href="#PyTorch-version">¶</a>
+<a class="anchor" href="#PyTorch-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>PyTorch version<a class="anchor-link" href="#PyTorch-version"> </a>
 </h2>
 <p>Unlike Keras, <a href="https://pytorch.org/">PyTorch</a> does not have any "training wheels."  You have to specify a number of the operations yourself.  It's helpful to have a template to start from, such as the following example for our XOR problem.</p>
 
@@ -952,10 +952,10 @@ Y_tilde =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Exercise:-Exploring-Hidden-Layers.">
-<a class="anchor" href="#Exercise:-Exploring-Hidden-Layers." aria-hidden="true"><span class="octicon octicon-link"></span></a>Exercise: Exploring Hidden Layers.<a class="anchor-link" href="#Exercise:-Exploring-Hidden-Layers.">¶</a>
+<a class="anchor" href="#Exercise:-Exploring-Hidden-Layers." aria-hidden="true"><span class="octicon octicon-link"></span></a>Exercise: Exploring Hidden Layers.<a class="anchor-link" href="#Exercise:-Exploring-Hidden-Layers."> </a>
 </h1>
 <h2 id="More-with-the-7-segment-display">
-<a class="anchor" href="#More-with-the-7-segment-display" aria-hidden="true"><span class="octicon octicon-link"></span></a>More with the 7-segment display<a class="anchor-link" href="#More-with-the-7-segment-display">¶</a>
+<a class="anchor" href="#More-with-the-7-segment-display" aria-hidden="true"><span class="octicon octicon-link"></span></a>More with the 7-segment display<a class="anchor-link" href="#More-with-the-7-segment-display"> </a>
 </h2>
 <p>Using the $X$ and $Y$ arrays for from previous exercices with the 7-segment display, we'll explore the effects of adding hidden neurons and different activation functions.  Using the code template that follows below,...</p>
 
@@ -966,7 +966,7 @@ Y_tilde =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A.-Explore-hidden-layer-sizes-&amp;-activations">
-<a class="anchor" href="#A.-Explore-hidden-layer-sizes-&amp;-activations" aria-hidden="true"><span class="octicon octicon-link"></span></a>A. Explore hidden layer sizes &amp; activations<a class="anchor-link" href="#A.-Explore-hidden-layer-sizes-&amp;-activations">¶</a>
+<a class="anchor" href="#A.-Explore-hidden-layer-sizes-&amp;-activations" aria-hidden="true"><span class="octicon octicon-link"></span></a>A. Explore hidden layer sizes &amp; activations<a class="anchor-link" href="#A.-Explore-hidden-layer-sizes-&amp;-activations"> </a>
 </h3>
 <ol>
 <li>Write code for a <em>new</em> activation function: $\tanh(x)$ and its derivative. <strong>Note: there is already placeholder code for this in the template below</strong>
@@ -994,13 +994,13 @@ Y_tilde =
 </li>
 </ol>
 <h3 id="B.-Explore-multiple-hidden-layers">
-<a class="anchor" href="#B.-Explore-multiple-hidden-layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>B. Explore multiple hidden layers<a class="anchor-link" href="#B.-Explore-multiple-hidden-layers">¶</a>
+<a class="anchor" href="#B.-Explore-multiple-hidden-layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>B. Explore multiple hidden layers<a class="anchor-link" href="#B.-Explore-multiple-hidden-layers"> </a>
 </h3>
 <ol>
 <li>Now use two hidden layers, H and H2 with 10 neurons each, and experiment to <em>find the best combination</em> of activations, and best choice of learning rate that gives you the lowest loss at the end of your chosen number of iterations.  Check that your predicted output is as you expect. </li>
 </ol>
 <h3 id="Assignment:">
-<a class="anchor" href="#Assignment:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assignment:<a class="anchor-link" href="#Assignment:">¶</a>
+<a class="anchor" href="#Assignment:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assignment:<a class="anchor-link" href="#Assignment:"> </a>
 </h3>
 <p>Upload a text file of the code for your "winning" entry for #3 to Blackboard.   Use the code below as a template.</p>
 
@@ -1167,7 +1167,7 @@ Target Y (correct answer)  =
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Preview-of-next-lesson:-MNIST">
-<a class="anchor" href="#Preview-of-next-lesson:-MNIST" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview of next lesson: MNIST<a class="anchor-link" href="#Preview-of-next-lesson:-MNIST">¶</a>
+<a class="anchor" href="#Preview-of-next-lesson:-MNIST" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview of next lesson: MNIST<a class="anchor-link" href="#Preview-of-next-lesson:-MNIST"> </a>
 </h2>
 <p>Now that you've built up some experience with reading digits, let's move to handwritten digits!  This is a problem usually solved with an architecture called a Convolutional Neural Network, but our ordinary feed-forward network can do it too.</p>
 <p>The <a href="http://yann.lecun.com/exdb/mnist/">MNIST database of handwritten digits</a> is a classic dataset that every ML student works on.  It consists of a large number images of handwritten digits only 28x28 pixels in size.  We will "flatten" these into a row of 784 columns, and output a $\tilde{Y}$ of one-hot-encoded vectore just like we did for the output of the 7-segment display (same digits, 0 to 9!).</p>
