@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>My First Neural Network, Part 2. Bias and CE Loss | Scott H. Hawley (alt. blog via fastpages)</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="My First Neural Network, Part 2. Bias and CE Loss" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Bias and cross-entropy loss" />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-02-04T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Bias and cross-entropy loss","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2019/02/04/My-First-NN-Part-2.html","dateModified":"2019-02-04T00:00:00-06:00","datePublished":"2019-02-04T00:00:00-06:00","headline":"My First Neural Network, Part 2. Bias and CE Loss","image":"https://i.imgur.com/5CbsjVW.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2019/02/04/My-First-NN-Part-2.html"},"@context":"https://schema.org"}</script>
+{"url":"https://drscotthawley.github.io/devblog3/2019/02/04/My-First-NN-Part-2.html","@type":"BlogPosting","headline":"My First Neural Network, Part 2. Bias and CE Loss","dateModified":"2019-02-04T00:00:00-06:00","datePublished":"2019-02-04T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2019/02/04/My-First-NN-Part-2.html"},"image":"https://i.imgur.com/5CbsjVW.png","description":"Bias and cross-entropy loss","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -552,10 +552,16 @@ With bias: Y_pred =
 </h2>
 <p>Let's return to Trask's first problem for which there is only one target per data point (row) of input, namely a target of 0 or 1.  In this case, using the sigmoid function for this classification problem is one of <a href="https://www.youtube.com/watch?v=yIYKR4sgzI8">logistic regression</a>, even though we hadn't it identified it as such.</p>
 <p>We've been using mean squared error (MSE) loss, but other loss functions exist.  In particular, for outputs which are either "yes" or "no" such as the <em>classification problem</em> we are solving, a function called "<a href="https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html#cross-entropy">cross entropy</a>" is typically preferred. The cross-entropy loss is written like this:</p>
-$$L_{CE} = -\sum_i \left[ Y_i\log(\tilde{Y}_i) + (1-Y_i)\log(1-\tilde{Y}_i) \right]$$<p>Note that since the function $\log(x)$  is undefined for $x\le0$, we need to make sure $0&lt;\tilde{Y}_i&lt;1$ for all $i$.  One way to ensure this is to use sigmoid activation! Thus, for classification problems, it is very common to see sigmoid activation (or its multi-class relative "<a href="http://dataaspirant.com/2017/03/07/difference-between-softmax-function-and-sigmoid-function/">softmax</a>") immediately before the output, even for many-layer neural networks with all kinds of other activations in other places.</p>
+<p>
+$$L_{CE} = -\sum_i \left[ Y_i\log(\tilde{Y}_i) + (1-Y_i)\log(1-\tilde{Y}_i) \right]$$
+</p>
+<p>Note that since the function $\log(x)$  is undefined for $x\le0$, we need to make sure $0&lt;\tilde{Y}_i&lt;1$ for all $i$.  One way to ensure this is to use sigmoid activation! Thus, for classification problems, it is very common to see sigmoid activation (or its multi-class relative "<a href="http://dataaspirant.com/2017/03/07/difference-between-softmax-function-and-sigmoid-function/">softmax</a>") immediately before the output, even for many-layer neural networks with all kinds of other activations in other places.</p>
 <p>To use the CE loss with gradient descent, we need its derivative with respect to the weights. First let's write the CE loss in terms of the inputs $X$, weights $w$ and activation function $f$:</p>
 <p>...wait, for compactness, let's write the weighted sum as $S_i = \sum_j X_{ij}w_j$. Ok, now going forward....</p>
-$$L_{CE} = -\sum_i\left[ Y_i\log\left(f\left(S_i \right)\right) + (1-Y_i)\log\left(1- f\left(S_{i}\right)\right) \right]$$<p>For any function $g(x)$, the derivative of $\log(g(x))$ with respect to x is just $1/g*(du/dx)$, so our partial derivatives with respect to weights look like</p>
+<p>
+$$L_{CE} = -\sum_i\left[ Y_i\log\left(f\left(S_i \right)\right) + (1-Y_i)\log\left(1- f\left(S_{i}\right)\right) \right]$$
+</p>
+<p>For any function $g(x)$, the derivative of $\log(g(x))$ with respect to x is just $1/g*(du/dx)$, so our partial derivatives with respect to weights look like</p>
 $${\partial L_{CE}\over \partial w_j} = -\sum_i\left[ {Y_i\over\tilde{Y_i}}{\partial f(S_i)\over \partial w_j}  - 
 {1-Y_i\over 1-\tilde{Y}_i} {\partial f(S_i)\over \partial w_j} \right]\\
 = -\sum_i {\partial f(S_i) \over \partial S_i}{\partial S_i\over\partial w_j} \left[  {Y_i\over\tilde{Y_i}}  - 

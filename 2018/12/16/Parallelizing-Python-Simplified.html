@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Parallelizing Python, Simplified | Scott H. Hawley (alt. blog via fastpages)</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Parallelizing Python, Simplified" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Basic use of multiprocessing." />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-12-16T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Basic use of multiprocessing.","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html","dateModified":"2018-12-16T00:00:00-06:00","datePublished":"2018-12-16T00:00:00-06:00","headline":"Parallelizing Python, Simplified","image":"https://drscotthawley.github.io/images/parallelpython.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html"},"@context":"https://schema.org"}</script>
+{"url":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html","@type":"BlogPosting","headline":"Parallelizing Python, Simplified","dateModified":"2018-12-16T00:00:00-06:00","datePublished":"2018-12-16T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2018/12/16/Parallelizing-Python-Simplified.html"},"image":"https://drscotthawley.github.io/images/parallelpython.png","description":"Basic use of multiprocessing.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -147,10 +147,10 @@ we’ll generate 2000 of them.</p>
 <span class="n">n_images</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_images</span><span class="p">):</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span><span class="n">size_y</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span><span class="n">size_y</span><span class="p">)</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="s">'image_'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'.png'</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"writing file "</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Now we write a dedicated function, put it in a <code class="language-plaintext highlighter-rouge">partial</code> wrapper, and call it as follows:</p>
@@ -160,10 +160,10 @@ we’ll generate 2000 of them.</p>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 
 <span class="k">def</span> <span class="nf">write_one_file</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="n">name_prefix</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span><span class="n">size_y</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span><span class="n">size_y</span><span class="p">)</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">name_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.png'</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"writing file "</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
 
 <span class="n">n_images</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
@@ -182,22 +182,22 @@ or specify how many to use, by giving an argument to <code class="language-plain
 <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="n">mp</span>
 
 <span class="k">def</span> <span class="nf">write_one_file</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="n">name_prefix</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span><span class="n">size_y</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="mi">255</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size_x</span><span class="p">,</span><span class="n">size_y</span><span class="p">)</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">name_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.png'</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"writing file "</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
 
 <span class="n">n_images</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
 
 <span class="n">wrapper</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">write_one_file</span><span class="p">,</span> <span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="s">'image_'</span><span class="p">)</span>
 
-<span class="n">num_procs</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># or can replace with some number of processes to use
-</span><span class="n">pool</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">num_procs</span><span class="p">)</span>
+<span class="n">num_procs</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="c1"># or can replace with some number of processes to use
+</span><span class="n">pool</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">num_procs</span><span class="p">)</span>
 <span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_images</span><span class="p">)</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
-<span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
+<span class="n">pool</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">pool</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>There are other ways you can do this to get more control, e.g. to have each process in the pool receive a particular
@@ -217,7 +217,7 @@ it’s still an illustrative example that motivates Example 3, and offers a bit 
 <span class="n">name_prefix</span> <span class="o">=</span> <span class="s">'image_'</span>
 <span class="c1"># we'll use glob to get the list of available files
 # note that glob order isn't...easily discernible, so we'll sort.
-</span><span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
+</span><span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
 <span class="n">n_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">n_files</span><span class="p">,</span><span class="s">"files available."</span><span class="p">)</span>
 
@@ -225,8 +225,8 @@ it’s still an illustrative example that motivates Example 3, and offers a bit 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_files</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">name_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.png'</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Reading file"</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">img_data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">img_data_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_data_list</span><span class="p">),</span><span class="s">"images in list."</span><span class="p">)</span>
 </code></pre></div></div>
@@ -245,14 +245,14 @@ Parallelizing this can take the following form:</p>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">istart</span><span class="p">,</span><span class="n">iend</span><span class="p">):</span>    <span class="c1"># each process will read a range of files
 </span>        <span class="n">filename</span> <span class="o">=</span> <span class="n">img_file_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"Reading file"</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-        <span class="n">img_data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">img_data_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
     <span class="k">return</span>
 
 <span class="n">name_prefix</span> <span class="o">=</span> <span class="s">'image_'</span>
 <span class="c1"># we'll use glob to get the list of available files
 # note that glob order isn't...easily discernible, so we'll sort.
-</span><span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
+</span><span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
 <span class="n">n_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">n_files</span><span class="p">,</span><span class="s">"files available."</span><span class="p">)</span>
 
@@ -264,14 +264,14 @@ Parallelizing this can take the following form:</p>
 </span><span class="k">assert</span> <span class="n">n_files</span> <span class="o">==</span> <span class="n">per_proc</span> <span class="o">*</span> <span class="n">num_procs</span>  <span class="c1"># Make sure tasks divide evenly. Obvously one can do something more sophisticated than this!
 </span>
 <span class="k">with</span> <span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
-    <span class="n">img_data_list</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="nb">list</span><span class="p">()</span>
+    <span class="n">img_data_list</span> <span class="o">=</span> <span class="n">manager</span><span class="p">.</span><span class="nb">list</span><span class="p">()</span>
     <span class="n">processes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">iproc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_procs</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">load_one_proc</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">img_data_list</span><span class="p">,</span> <span class="n">img_file_list</span><span class="p">,</span> <span class="n">iproc</span><span class="p">,</span> <span class="n">per_proc</span><span class="p">))</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="n">processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">processes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
     <span class="n">outside_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">img_data_list</span><span class="p">)</span>   <span class="c1"># Copy out of the Manager context (there may be a better way to do this)
 </span>
 <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outside_list</span><span class="p">),</span><span class="s">"images in list."</span><span class="p">)</span>
@@ -294,19 +294,19 @@ the simpler of the two workarounds.</p>
 <span class="kn">import</span> <span class="nn">cv2</span>
 
 <span class="n">name_prefix</span> <span class="o">=</span> <span class="s">'image_'</span>
-<span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
+<span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
 <span class="n">n_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">)</span>
 
-<span class="n">first_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">n_files</span><span class="p">,</span><span class="s">"files available.  Shape of first image is"</span><span class="p">,</span><span class="n">first_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">first_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">n_files</span><span class="p">,</span><span class="s">"files available.  Shape of first image is"</span><span class="p">,</span><span class="n">first_image</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">"Assuming all images are that size."</span><span class="p">)</span>
-<span class="n">img_data_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_files</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">first_image</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>  <span class="c1"># allocate storage
+<span class="n">img_data_arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_files</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">first_image</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>  <span class="c1"># allocate storage
 </span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_files</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">img_file_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Reading file"</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">img_data_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">img_data_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">"Finished."</span><span class="p">)</span>
 </code></pre></div></div>
@@ -327,25 +327,25 @@ the simpler of the two workarounds.</p>
     <span class="k">global</span> <span class="n">mp_shared_array</span>
 
     <span class="c1"># tmp will end up pointing to the memory address of the shared array we want to populate
-</span>    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">as_array</span><span class="p">(</span><span class="n">mp_shared_array</span><span class="p">)</span>
+</span>    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ctypeslib</span><span class="p">.</span><span class="n">as_array</span><span class="p">(</span><span class="n">mp_shared_array</span><span class="p">)</span>
 
     <span class="n">filename</span> <span class="o">=</span> <span class="n">img_file_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Reading file"</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>   <span class="c1"># assign the values into the memory of the shared array
+    <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>   <span class="c1"># assign the values into the memory of the shared array
 </span>    <span class="k">return</span>
 
 <span class="n">name_prefix</span> <span class="o">=</span> <span class="s">'image_'</span>
-<span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
+<span class="n">img_file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="n">name_prefix</span><span class="o">+</span><span class="s">'*.png'</span><span class="p">))</span>
 <span class="n">n_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">)</span>
 
-<span class="n">first_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">n_files</span><span class="p">,</span><span class="s">"files available.  Shape of first image is"</span><span class="p">,</span><span class="n">first_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">first_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">n_files</span><span class="p">,</span><span class="s">"files available.  Shape of first image is"</span><span class="p">,</span><span class="n">first_image</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"Assuming all images are that size."</span><span class="p">)</span>
-<span class="n">img_data_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_files</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">first_image</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>  <span class="c1"># allocate storage
-</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">as_ctypes</span><span class="p">(</span><span class="n">img_data_arr</span><span class="p">)</span>                  <span class="c1"># tmp variable avoids numpy garbage-collection bug
+<span class="n">img_data_arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_files</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">first_image</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>  <span class="c1"># allocate storage
+</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ctypeslib</span><span class="p">.</span><span class="n">as_ctypes</span><span class="p">(</span><span class="n">img_data_arr</span><span class="p">)</span>                  <span class="c1"># tmp variable avoids numpy garbage-collection bug
 </span>
 <span class="k">print</span><span class="p">(</span><span class="s">"Allocating shared storage for multiprocessing (this can take a while)"</span><span class="p">)</span>
-<span class="n">mp_shared_array</span> <span class="o">=</span> <span class="n">sharedctypes</span><span class="o">.</span><span class="n">RawArray</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">_type_</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+<span class="n">mp_shared_array</span> <span class="o">=</span> <span class="n">sharedctypes</span><span class="p">.</span><span class="n">RawArray</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">_type_</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
 
 <span class="n">num_procs</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"Parallelizing across"</span><span class="p">,</span><span class="n">num_procs</span><span class="p">,</span><span class="s">"processes."</span><span class="p">)</span>
@@ -353,15 +353,15 @@ the simpler of the two workarounds.</p>
 
 <span class="n">wrapper</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">load_one_proc</span><span class="p">,</span> <span class="n">img_file_list</span><span class="p">)</span>
 <span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_files</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>                <span class="c1"># here's where we farm out the op
-</span><span class="n">img_data_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">as_array</span><span class="p">(</span><span class="n">mp_shared_array</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">img_data_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># this actually happens pretty fast
-</span><span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>                <span class="c1"># here's where we farm out the op
+</span><span class="n">img_data_arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ctypeslib</span><span class="p">.</span><span class="n">as_array</span><span class="p">(</span><span class="n">mp_shared_array</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">img_data_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># this actually happens pretty fast
+</span><span class="n">p</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">p</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
 
 <span class="c1"># Next couple lines are here just in case you want to move on to other things
 #   and force garbage collection
 </span><span class="n">mp_shared_array</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="n">gc</span><span class="p">.</span><span class="n">collect</span><span class="p">()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">"Finished."</span><span class="p">)</span>
 </code></pre></div></div>

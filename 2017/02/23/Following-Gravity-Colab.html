@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Following Gravity - ML Foundations Part I | Scott H. Hawley (alt. blog via fastpages)</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Following Gravity - ML Foundations Part I" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="First in a series on Machine Learning Foundations, which applies to much of science and statistics as well. ." />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-02-23T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"First in a series on Machine Learning Foundations, which applies to much of science and statistics as well. .","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2017/02/23/Following-Gravity-Colab.html","dateModified":"2017-02-23T00:00:00-06:00","datePublished":"2017-02-23T00:00:00-06:00","headline":"Following Gravity - ML Foundations Part I","image":"https://drscotthawley.github.io/images/Ia-FollowingGravity_header.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2017/02/23/Following-Gravity-Colab.html"},"@context":"https://schema.org"}</script>
+{"url":"https://drscotthawley.github.io/devblog3/2017/02/23/Following-Gravity-Colab.html","@type":"BlogPosting","headline":"Following Gravity - ML Foundations Part I","dateModified":"2017-02-23T00:00:00-06:00","datePublished":"2017-02-23T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2017/02/23/Following-Gravity-Colab.html"},"image":"https://drscotthawley.github.io/images/Ia-FollowingGravity_header.jpg","description":"First in a series on Machine Learning Foundations, which applies to much of science and statistics as well. .","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -383,7 +383,9 @@ AAAASUVORK5CYII=
 <ol>
 <li>Start with some initial guess for $x$</li>
 <li>"Go in the direction of  $-df/dx$":
+
 $$x_{new} = x_{old} - \alpha {df\over dx},$$
+
 where $\alpha$ is some parameter often called the "learning rate".  All this equation is saying is, "If the function is increasing, then move to the left; and if the function is decreasing then move to the right."  The actual change to $x$ is given by $\Delta x \equiv - \alpha (df/dx)$.    </li>
 <li>Repeat step 2 until some approximation criterion is met.</li>
 </ol>
@@ -2093,7 +2095,9 @@ USAAjCgQAEYUCAAjCgSAkV+5ot33QiqbAQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Multidimensional-Gradient-Descent">Multidimensional Gradient Descent<a class="anchor-link" href="#Multidimensional-Gradient-Descent"> </a></h3><p><em>(A descent into darkness...)</em></p>
 <p>Let's define a function of two variables, that's got at least one minimum in it.  We'll choose
+
 $$f(x,y) = -\left( \cos x + 3\cos y \right) /2,$$
+
 which actually has infinitely many minima, but we'll try to 'zoom in' on just one.</p>
 <p>We can vizualize this function via the graph produced by the code below; in the graph, darker areas show lower values than ligher areas, and there is a minimum at the point $x=0,y=0$ where $f(0,0)=-2$.</p>
 
@@ -2392,7 +2396,13 @@ GB3HcQT/H89CLYCkgZLrAAAAAElFTkSuQmCC
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The way we find a minimum is similar to what we did before, except we use partial derivatives in the x- and y-directions:</p>
-$$x_{new} = x_{old} + \Delta x,\ \ \ \ \ \ \Delta x = - \alpha {\partial f\over \partial x}  $$$$y_{new} = y_{old} + \Delta y,\ \ \ \ \ \ \Delta y = - \alpha {\partial f\over \partial y},$$
+<p>
+$$x_{new} = x_{old} + \Delta x,\ \ \ \ \ \ \Delta x = - \alpha {\partial f\over \partial x}  $$
+
+
+$$y_{new} = y_{old} + \Delta y,\ \ \ \ \ \ \Delta y = - \alpha {\partial f\over \partial y},$$
+</p>
+
 </div>
 </div>
 </div>
@@ -2778,14 +2788,30 @@ KIoi0IZRURRFoA2joiiK4P8D149GEt3GTDIAAAAASUVORK5CYII=
 <h2 id="Least-Squares-Regression">Least Squares Regression<a class="anchor-link" href="#Least-Squares-Regression"> </a></h2><p>This is such a common thing to do in science and statistics, that everyone should learn how it works.  We'll do it for linear relationships, but it generalizes to nonlinear situations as well.</p>
 <h3 id="How-to-Fit-a-Line">How to Fit a Line<a class="anchor-link" href="#How-to-Fit-a-Line"> </a></h3><p>Let's say we're trying to fit a line to a bunch of data.  We've been given $n$ data points with coordinates $(x_i,y_i)$ where $i=1..n$.  The problem becomes, given a line $f(x) = mx+b$, find the values of the parameters $m$ and $b$ which minimize the overall "error".</p>
 <h4 id="add-some-kinda-picture-here?">add some kinda picture here?<a class="anchor-link" href="#add-some-kinda-picture-here?"> </a></h4><p>The error can take many forms; one is the squared error $SE$, which is just the sum of the squares of the "distances" between each data point's $y$-value and the "guess" from the line fit $f$ at each value of $x$:</p>
-$$ SE = (f(x_1) - y_1)^2 + (f(x_2) - y_2)^2 + ... (f(x_n)-y_n)^2,$$<p>We can write this concisely as
-$$ SE = \sum_{i=1}^n (f(x_i)-y_i)^2.$$</p>
+<p>
+$$ SE = (f(x_1) - y_1)^2 + (f(x_2) - y_2)^2 + ... (f(x_n)-y_n)^2,$$
+</p>
+<p>We can write this concisely as
+
+$$ SE = \sum_{i=1}^n (f(x_i)-y_i)^2.$$
+</p>
 <p>Another popular form is the "mean squared error" $MSE$, which is just $SE/n$:</p>
-$$ MSE = {1\over n}\sum_{i=1}^n (f(x_i)-y_i)^2.$$<p>The MSE has the nice feature that as you add more data points, it tends to hold a more-or-less consistent value (as opposed to the SE which gets bigger as you add more points).  We'll use the MSE in the work that follows.</p>
+<p>
+$$ MSE = {1\over n}\sum_{i=1}^n (f(x_i)-y_i)^2.$$
+</p>
+<p>The MSE has the nice feature that as you add more data points, it tends to hold a more-or-less consistent value (as opposed to the SE which gets bigger as you add more points).  We'll use the MSE in the work that follows.</p>
 <p>So expanding out $f(x)$, we see that the MSE is a function of $m$ and $b$, and these are the parameters we'll vary to minimize the MSE:
-$$ MSE(m,b) = {1\over n}\sum_{i=1}^n (mx_i+b-y_i)^2.$$</p>
+
+$$ MSE(m,b) = {1\over n}\sum_{i=1}^n (mx_i+b-y_i)^2.$$
+</p>
 <p>So, following our earlier work on multidimensional optimization, we start with guesses for $m$ and $b$ and then update according to gradient descent:</p>
-$$m_{new} = m_{old} + \Delta m,\ \ \ \ \ \ \Delta m = -\alpha{\partial (MSE)\over\partial m} = -\alpha{2\over n}\sum_{i=1}^n (mx_i+b-y_i)(x_i) $$$$b_{new} = b_{old} + \Delta b,\ \ \ \ \ \ \Delta b =  -\alpha{\partial (MSE)\over\partial b} = -\alpha{2\over n}\sum_{i=1}^n (mx_i+b-y_i)(1).$$<p>So, to start off, let's get some data...</p>
+<p>
+$$m_{new} = m_{old} + \Delta m,\ \ \ \ \ \ \Delta m = -\alpha{\partial (MSE)\over\partial m} = -\alpha{2\over n}\sum_{i=1}^n (mx_i+b-y_i)(x_i) $$
+
+
+$$b_{new} = b_{old} + \Delta b,\ \ \ \ \ \ \Delta b =  -\alpha{\partial (MSE)\over\partial b} = -\alpha{2\over n}\sum_{i=1}^n (mx_i+b-y_i)(1).$$
+</p>
+<p>So, to start off, let's get some data...</p>
 
 </div>
 </div>
@@ -3722,15 +3748,22 @@ iSgUREQkolAQEZGIQkFERCIKBRERifx/Fkp7VoWTuCoAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Great!</p>
 <h3 id="Least-Squares-Fitting-with-Nonlinear-Functions">Least Squares Fitting with Nonlinear Functions<a class="anchor-link" href="#Least-Squares-Fitting-with-Nonlinear-Functions"> </a></h3><p>We can generalize the technique describe above to fit polynomials 
+
 $$ f(x) = c_0 + c_1 x + c_2 x^2 + ...c_k x^k,$$
+
 where $c_0...c_k$ are the parameters we will tune, and $k$ is the order of the polynomial. (Typically people use the letter $a$ for polynomial coefficients, but in the math rendering of Jupter, $\alpha$ and $a$ look too much alike, so we'll use $c$.) Written more succinctly,
-$$ f(x) = \sum_{j=0}^k c_j x^j.$$</p>
+
+$$ f(x) = \sum_{j=0}^k c_j x^j.$$
+</p>
 <p>(Indeed, we could even try non-polynomial basis functions, e.g.,
 $ f(x) = c_0 + c_1 g(x) + c_2 h(x) + ...,$
 but let's stick to polynomials for now.)</p>
 <p>The key thing to note is that for each parameter $c_j$, the update $\Delta c_j$ will be</p>
 $$\Delta c_j = -\alpha {\partial (MSE)\over \partial c_j} 
-= -\alpha {\partial (MSE)\over \partial f}{\partial f\over \partial c_j}$$$$= -\alpha {2\over n}\sum_{i=1}^n [f(x_i)-y_i](x_i)^{j} $$<p><em>(Note that we are not taking the derivative with respect to $x_i$, but rather with respect to $c_j$.  Thus there is no "power rule" that needs be applied to this derivative.  Also there is no sum over j.)</em></p>
+= -\alpha {\partial (MSE)\over \partial f}{\partial f\over \partial c_j}$$<p>
+$$= -\alpha {2\over n}\sum_{i=1}^n [f(x_i)-y_i](x_i)^{j} $$
+</p>
+<p><em>(Note that we are not taking the derivative with respect to $x_i$, but rather with respect to $c_j$.  Thus there is no "power rule" that needs be applied to this derivative.  Also there is no sum over j.)</em></p>
 <p>The following is a complete code for doing this, along with some added refinements:</p>
 <ul>
 <li>$\alpha$ is now $\alpha_j$, i.e. different learning rates for different directions</li>
@@ -4620,7 +4653,10 @@ Estimate for g =  9.79872342227
 <p>...although...</p>
 <p><em>What if our data wasn't parabolic?</em> Sure, for motion in a uniform gravitational field this is fine, but what if we want to model the sinusoidal motion of a simple harmonic oscillator?  In that case, guessing a parabola would only work for very early times (thanks to <a href="https://en.wikipedia.org/wiki/Taylor&#39;s_theorem">Taylor's theorem</a>).  Sure, we could fit a model where we've explictly put in a sine function in the code -- and I encourage you to write your own code to do this -- but perhaps there's a way to <em>deduce</em> the motion, by looking at the local behavior and thereby 'learning' the differential equation underlying the motion.</p>
 <p><strong>Exercise:</strong> Copy the <code>polyfit()</code> code elsewhere (e.g. to text file or a new cell in this Jupyter notebook or a new notebook) and rename it <code>sinefit()</code>, and modify it to fit a sine function instead of a polynomial:</p>
-$$y(t) = A\sin(\omega t + \phi),$$<p>where the fit parameters will be the amplitude $A$, frequency $\omega$ and phase constant $\phi$.  Try fitting to data generated for $A=3$, $\omega=2$, $\phi=1.57$ on $0\le t \le 10$.
+<p>
+$$y(t) = A\sin(\omega t + \phi),$$
+</p>
+<p>where the fit parameters will be the amplitude $A$, frequency $\omega$ and phase constant $\phi$.  Try fitting to data generated for $A=3$, $\omega=2$, $\phi=1.57$ on $0\le t \le 10$.
 As an example, you can check your answer against <a href="http://hedges.belmont.edu/~shawley/PHY4410/sinefit_a3w2p1.57.png">this</a>. 
 <br />
 <br /></p>

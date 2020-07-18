@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>More tests for nbdev &amp; fastpages | Scott H. Hawley (alt. blog via fastpages)</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="More tests for nbdev &amp; fastpages" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Here are a few tests for nbdev and fastpages" />
@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-02-18T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Here are a few tests for nbdev and fastpages","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2020/02/18/fastpages_tests.html","dateModified":"2020-02-18T00:00:00-06:00","datePublished":"2020-02-18T00:00:00-06:00","headline":"More tests for nbdev &amp; fastpages","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2020/02/18/fastpages_tests.html"},"@context":"https://schema.org"}</script>
+{"url":"https://drscotthawley.github.io/devblog3/2020/02/18/fastpages_tests.html","@type":"BlogPosting","headline":"More tests for nbdev &amp; fastpages","dateModified":"2020-02-18T00:00:00-06:00","datePublished":"2020-02-18T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2020/02/18/fastpages_tests.html"},"description":"Here are a few tests for nbdev and fastpages","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -270,7 +270,10 @@ if (outputEl) {{
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Math-support">Math support<a class="anchor-link" href="#Math-support"> </a></h2><p>Inline math: $f(x)$</p>
 <p>Full line math:</p>
+<p>
 $$ \sum_{i=1}^\infty f(x) $$
+</p>
+
 </div>
 </div>
 </div>
@@ -280,7 +283,7 @@ $$ \sum_{i=1}^\infty f(x) $$
 <p>original size: <img src="https://i.imgur.com/rUcGpVn.png" alt="orig" /></p>
 <p>width 2x: <img src="https://i.imgur.com/rUcGpVn.png" width="200%" /></p>
 <p style="text-align:right">A right-aligned paragraph.</p><center>Here is some center-aligned text</center><p><small>Here is some small text</small></p>
-<blockquote><p><em>This is an italicized quote <a href="http: //www.google.com">with a link to Google</a>.</em></p>
+<blockquote><p><em>This is an italicized quote <a href="http://www.google.com">with a link to Google</a>.</em></p>
 </blockquote>
 <p><strong>Nested italics and links</strong> (this gets rendered as plaintext in the nbdev output for my PCA notebook):</p>
 <p>"(Darn it, <a href="https://community.plot.ly/t/orthographic-projection-for-3d-plots/3897">if only Plot.ly would support orthographic projections</a> [<a href="https://community.plot.ly/t/orthographic-projection-instead-of-perspective-for-3d-plots/10035">2</a>] it'd be a lot easier to visually compare the two datasets!)"</p>

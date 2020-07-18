@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Principal Component Analysis (PCA) from Scratch | Scott H. Hawley (alt. blog via fastpages)</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Principal Component Analysis (PCA) from Scratch" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="There are many tutorials on PCA, but this one has interactive 3D graphs!" />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-12-21T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"There are many tutorials on PCA, but this one has interactive 3D graphs!","@type":"BlogPosting","url":"https://drscotthawley.github.io/devblog3/2019/12/21/PCA-From-Scratch.html","dateModified":"2019-12-21T00:00:00-06:00","datePublished":"2019-12-21T00:00:00-06:00","headline":"Principal Component Analysis (PCA) from Scratch","image":"https://i.imgur.com/vKiH8As.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2019/12/21/PCA-From-Scratch.html"},"@context":"https://schema.org"}</script>
+{"url":"https://drscotthawley.github.io/devblog3/2019/12/21/PCA-From-Scratch.html","@type":"BlogPosting","headline":"Principal Component Analysis (PCA) from Scratch","dateModified":"2019-12-21T00:00:00-06:00","datePublished":"2019-12-21T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://drscotthawley.github.io/devblog3/2019/12/21/PCA-From-Scratch.html"},"image":"https://i.imgur.com/vKiH8As.png","description":"There are many tutorials on PCA, but this one has interactive 3D graphs!","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -383,7 +383,10 @@ Variance in y = 0.19318628312072175
 <a class="anchor" href="#Covariance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Covariance<a class="anchor-link" href="#Covariance"> </a>
 </h3>
 <p>You'll notice in the above graph that as $x$ varies, so does $y$ -- pretty much.  So $y$ is "<em>covariant</em>" with $x$.  <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.cov.html">"Covariance indicates the level to which two variables vary together."</a>  To compute it, it's kind of like the regular variance, except that instead of squaring the deviation from the mean for one variable, we multiply the deviations for the two variables:</p>
-$${\rm Cov}(x,y) = {1\over N-1}\sum_{j=1}^N (x_j-\mu_x)(y_j-\mu_j),$$<p>where $\mu_x$ and $\mu_y$ are the means for the x- and y- componenets of the data, respectively.  Note that you can reverse $x$ and $y$ and get the same result, and the covariance of a variable with itself is just the regular variance -- but with one caveat!</p>
+<p>
+$${\rm Cov}(x,y) = {1\over N-1}\sum_{j=1}^N (x_j-\mu_x)(y_j-\mu_j),$$
+
+where $\mu_x$ and $\mu_y$ are the means for the x- and y- componenets of the data, respectively.  Note that you can reverse $x$ and $y$ and get the same result, and the covariance of a variable with itself is just the regular variance -- but with one caveat!</p>
 <p>The caveat is that we're dividing by $N-1$ instead of $N$, so unlike the regular variance we're not quite taking the mean.  Why this?  Well, for large datasets this makes essentially no difference, but for small numbers of data points, using $N$ can give values that tend to be a bit too small for most people's tastes, so the $N-1$ was introduced to "reduce small sample bias."</p>
 <p>In Python code, the covariance calculation looks like</p>
 
@@ -610,12 +613,15 @@ if (outputEl) {{
 </h1>
 <p>First a <strong>definition</strong>.  (Stay with me!  We'll flesh this out in what comes after this.)</p>
 <p>Given some matrix (or 'linear operator') ${\bf A}$ with dimensions $n\times n$ (i.e., $n$ rows and $n$ columns), there exist a set of $n$ vectors $\vec{v}_i$ (each with dimension $n$, and $i = 1...n$ counts which vector we're talking about) <strong>such that</strong> multiplying one of these vectors by ${\bf A}$ results in a vector (anti)parallel to $\vec{v}_i$, with a length that's multiplied by some constant $\lambda_i$.  In equation form:</p>
-$${\bf A}\vec{v}_i = \lambda_i \vec{v}_i,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)$$<p>where the constants $\lambda_i$ are called <em>eigenvalues</em> and the vectors $\vec{v}_i$ are called <em>eigenvectors</em>.</p>
+<p>
+$${\bf A}\vec{v}_i = \lambda_i \vec{v}_i,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)$$
+</p>
+<p>where the constants $\lambda_i$ are called <em>eigenvalues</em> and the vectors $\vec{v}_i$ are called <em>eigenvectors</em>.</p>
 <p><span style="text-align:right; font-style:italic; font-size:70%;">(Note that I'm departing a bit from common notation that uses $\vec{x}_i$ instead of $\vec{v}_i$; I don't want people to get confused when I want to use $x$'s for coordinate variables.)</span></p>
 <p>A graphical version of this is shown in Figure 1:</p>
 <p><img src="https://i.imgur.com/rUcGpVn.png" alt="picture of eigenvectors"></p>
 <blockquote>
-<p>Figure 1. "An eigenvector is a vector that a linear operator sends to a multiple of itself" -- <a href="https:%20//www.quora.com/What-does-Eigen-mean/answer/Daniel-McLaury">Daniel McLaury</a></p>
+<p>Figure 1. "An eigenvector is a vector that a linear operator sends to a multiple of itself" -- <a href="https://www.quora.com/What-does-Eigen-mean/answer/Daniel-McLaury">Daniel McLaury</a></p>
 </blockquote>
 
 </div>
@@ -704,8 +710,11 @@ We'll follow the basic two steps:</p>
 </h2>
 <p>Ok I'm hoping you at least can recall what a <a href="https://en.wikipedia.org/wiki/Determinant">determinant</a> of a matrix is. Many people, even if they don't know what a determinant is good for (e.g. tons of proofs &amp; properties all rest on the determinant), they still at least remember how to calculate one.</p>
 <p>The way to get the eigenvalues is to take the determinant of the difference between a $\bf{A}$ and $\lambda$ times the <em>identity matrix</em> $\bf{I}$ (which is just ones along the diagonal and zeros otherwise) and set that difference equal to zero...</p>
-$$det( \bf{A} - \lambda I) = 0 $$<blockquote>
-<p><small>Just another observation: Since ${\bf I}$ is a square matrix, that means $\bf{A}$ has to be a square matrix too.</small>
+<p>
+$$det( \bf{A} - \lambda I) = 0 $$
+</p>
+<blockquote>
+<p><small>Just another observation:Since ${\bf I}$ is a square matrix, that means $\bf{A}$ has to be a square matrix too.</small>
 Then solving for $\lambda$ will give you a <em>polynomial equation</em> in $\lambda$, the solutions to (or roots of) which are the eigenvectors $\lambda_i$.</p>
 </blockquote>
 <p>Let's do an example:</p>
@@ -725,7 +734,9 @@ det( \bf{A} - \lambda I) =
 -4 &amp; 2 &amp; 3-\lambda
 \end{vmatrix} = 0.$$</p>
 <p>This gives us the equation...
-$$0 = \lambda^3 - 6\lambda^2 + \lambda - 6$$</p>
+
+$$0 = \lambda^3 - 6\lambda^2 + \lambda - 6$$
+</p>
 <p>which has the 3 solutions (in descending order)
 $$ \lambda = 3, 2, 1.$$</p>
 <p><small>*(Aside: to create an integer matrix with integer eigenvalues, I used [this handy web tool](https://ericthewry.github.io/integer_matrices/))*.</small></p>
@@ -805,9 +816,27 @@ v_{1y}\\
 v_{1z}\\
 \end{bmatrix}
 $$<p>This amounts to 3 equations for 3 unknowns,...which I'm going to assume you can handle...  For the other eigenvalues things proceed similarly.  The solutions we get for the 3 eigenvalues are:</p>
-$$\lambda_1 = 3: \ \ \ \vec{v}_1 = (1,2,1)^T$$$$\lambda_2 = 2: \ \ \ \vec{v}_2 = (1,1,2)^T$$$$\lambda_3 = 1: \ \ \ \vec{v}_3 = (1,1,1)^T$$<p>Since our original equation (1) allows us to scale eigenvectors by any artibrary constant, often we'll express eigenvectors as <em>unit</em> vectors $\hat{v}_i$.  This will amount to dividing by the length of each vector, i.e. in our example multiplying by $(1/\sqrt{6},1/\sqrt{6},1/\sqrt{3})$.</p>
+<p>
+$$\lambda_1 = 3: \ \ \ \vec{v}_1 = (1,2,1)^T$$
+</p>
+<p>
+$$\lambda_2 = 2: \ \ \ \vec{v}_2 = (1,1,2)^T$$
+</p>
+<p>
+$$\lambda_3 = 1: \ \ \ \vec{v}_3 = (1,1,1)^T$$
+</p>
+<p>Since our original equation (1) allows us to scale eigenvectors by any artibrary constant, often we'll express eigenvectors as <em>unit</em> vectors $\hat{v}_i$.  This will amount to dividing by the length of each vector, i.e. in our example multiplying by $(1/\sqrt{6},1/\sqrt{6},1/\sqrt{3})$.</p>
 <p>In this setting</p>
-$$\lambda_1 = 3: \ \ \ \hat{v}_1 = (1/\sqrt{6},2/\sqrt{6},1/\sqrt{6})^T$$$$\lambda_2 = 2: \ \ \ \hat{v}_2 = (1/\sqrt{6},1/\sqrt{6},2/\sqrt{6})^T$$$$\lambda_3 = 1: \ \ \ \hat{v}_3 = (1,1,1)^T/\sqrt{3}$$<p>Checking our answers (left) with numpy's answers (right):</p>
+<p>
+$$\lambda_1 = 3: \ \ \ \hat{v}_1 = (1/\sqrt{6},2/\sqrt{6},1/\sqrt{6})^T$$
+</p>
+<p>
+$$\lambda_2 = 2: \ \ \ \hat{v}_2 = (1/\sqrt{6},1/\sqrt{6},2/\sqrt{6})^T$$
+</p>
+<p>
+$$\lambda_3 = 1: \ \ \ \hat{v}_3 = (1,1,1)^T/\sqrt{3}$$
+</p>
+<p>Checking our answers (left) with numpy's answers (right):</p>
 
 </div>
 </div>

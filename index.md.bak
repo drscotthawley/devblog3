@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/devblog3/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Scott H. Hawley (alt. blog via fastpages) | An alternate copy of my development blog, using fastpages. If successful I will replace the main blog with this</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Scott H. Hawley (alt. blog via fastpages)" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="An alternate copy of my development blog, using fastpages. If successful I will replace the main blog with this" />
@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://drscotthawley.github.io/devblog3/index.md.bak" />
 <meta property="og:site_name" content="Scott H. Hawley (alt. blog via fastpages)" />
 <script type="application/ld+json">
-{"description":"An alternate copy of my development blog, using fastpages. If successful I will replace the main blog with this","@type":"WebPage","url":"https://drscotthawley.github.io/devblog3/index.md.bak","headline":"Scott H. Hawley (alt. blog via fastpages)","@context":"https://schema.org"}</script>
+{"url":"https://drscotthawley.github.io/devblog3/index.md.bak","@type":"WebPage","headline":"Scott H. Hawley (alt. blog via fastpages)","description":"An alternate copy of my development blog, using fastpages. If successful I will replace the main blog with this","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -96,7 +96,7 @@ And you can include links, like this [link to fast.ai](https://www.fast.ai). Pos
     <ul class="post-list"><li><span class="post-meta">Mar 15, 2020</span>
         <h3>
           <a class="post-link" href="/devblog3/2020/03/15/Linear-Vs-Log.html">
-            Title
+            Interactively Switching Between Linear and Log Axes
           </a>
         </h3></li><li><span class="post-meta">Feb 18, 2020</span>
         <h3>
