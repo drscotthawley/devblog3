@@ -2,7 +2,7 @@
 #
 # This config file is meant for settings that affect your whole blog.
 #
-# If you need help with YAML syntax, here are some quick references for you: 
+# If you need help with YAML syntax, here are some quick references for you:
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
@@ -17,7 +17,7 @@ url: "https://drscotthawley.github.io" # the base hostname & protocol for your s
 baseurl: "/devblog3" # the subpath of your site, e.g. "/blog".  WARNING: if you are not using a custom domain, the baseurl *must* be set to your repo name.
 
 # Email and twitter are optional:
-email: 
+email:
 twitter_username: "@drscotthawley"
 
 # Set this to true to get LaTeX math equation support
@@ -37,6 +37,7 @@ plugins:
   - jekyll-twitter-plugin
   - jekyll-relative-links
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 titles_from_headings:
   enabled:     true
