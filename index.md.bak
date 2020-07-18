@@ -93,7 +93,12 @@
 
 And you can include links, like this [link to fast.ai](https://www.fast.ai). Posts will appear after this file. 
 <h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Mar 15, 2020</span>
+    <ul class="post-list"><li><span class="post-meta">Jul 18, 2020</span>
+        <h3>
+          <a class="post-link" href="/devblog3/2020/07/18/2017-05-05-Crash-Course-On-GANs.html">
+            
+          </a>
+        </h3></li><li><span class="post-meta">Mar 15, 2020</span>
         <h3>
           <a class="post-link" href="/devblog3/2020/03/15/Linear-Vs-Log.html">
             Interactively Switching Between Linear and Log Axes
@@ -142,11 +147,6 @@ And you can include links, like this [link to fast.ai](https://www.fast.ai). Pos
         <h3>
           <a class="post-link" href="/devblog3/2017/11/22/Notes-On-Convexity.html">
             Notes on Convexity of Loss Functions for Classification
-          </a>
-        </h3></li><li><span class="post-meta">May 5, 2017</span>
-        <h3>
-          <a class="post-link" href="/devblog3/2017/05/05/Crash-Course-On-GANs.html">
-            Crash Course On GANs
           </a>
         </h3></li><li><span class="post-meta">May 4, 2017</span>
         <h3>
