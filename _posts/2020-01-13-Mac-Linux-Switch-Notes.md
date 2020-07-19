@@ -2,6 +2,7 @@
 toc: true
 image: https://i.imgur.com/ebIVLhK.png
 description: Mac and I aren't breaking up, we're just seeing other people.
+- redirect_to: https://drscotthawley.github.io/blog/2020/01/13/Mac-Linux-Switch-Notes.html
 ---
 
 
