@@ -6,16 +6,17 @@ description: Mac OSX aliases are not symbolic links. Trying to read one will pro
 image: http://cdn.osxdaily.com/wp-content/uploads/2012/06/remove-alias-arrows-mac.jpg
 bg-image: http://cdn.osxdaily.com/wp-content/uploads/2012/06/remove-alias-arrows-mac.jpg
 comments: true
+redirect_to: https://drscotthawley.github.io/blog/2018/02/21/Resolving-OSX-Aliases.html
 ---
 Mac OSX aliases are not symbolic links. Trying to read one may crash your code.
 
-In an app I'm developing, I want users to be able to easily create a "library" of symbolic links to 
+In an app I'm developing, I want users to be able to easily create a "library" of symbolic links to
 other places on their machine, and this is most easily achieved for many of them by Cmd-Option-Dragging and dropping the files.
-This creates an "alias", which is a special file that Apple dreamed up.  UNIX users are accustomed to symbolic links, and codes 
+This creates an "alias", which is a special file that Apple dreamed up.  UNIX users are accustomed to symbolic links, and codes
 written in UNIX will not follow or "resolve" Mac aliases. Instead, they will cause an exception to be thrown.
 
 There used to be some libraries to handle this, but they relied on Apple's old Carbon framework which is no longer supported.
-There is a [mac_alias](https://mac-alias.readthedocs.io/en/latest/) package but the documentation is lacking. So, I found an 
+There is a [mac_alias](https://mac-alias.readthedocs.io/en/latest/) package but the documentation is lacking. So, I found an
 [old post on MacWorld](https://hints.macworld.com/article.php?story=20021024064107356) where one solution is given, and I ported that
 for what I need.
 
@@ -143,7 +144,7 @@ def load_audio(audio_path, mono=None, sr=None, convertOSXaliases=True):  # wrapp
             except NoBackendError as e:                               # Ok, even that didn't work, giving up (for now).
                 print("\n*** ERROR: Could not open audio file {}".format(audio_path),"\n",flush=True)
                 raise e
-        else:                                                         # Failure for some other reason. 
+        else:                                                         # Failure for some other reason.
             print("\n*** ERROR: Could not open audio file {}".format(audio_path),"\n",flush=True)
             raise e
     return signal, sr
@@ -152,5 +153,4 @@ def load_audio(audio_path, mono=None, sr=None, convertOSXaliases=True):  # wrapp
 Happy coding!
 
 *NOTE: Currently this code only follows _one_ alias.  If there's an alias pointing to an alias to a file, it won't resolve to that file.
-Full generality would involve adding an iterative or recursive way of traversing multiple aliases which...I may do later. ;-)* 
-
+Full generality would involve adding an iterative or recursive way of traversing multiple aliases which...I may do later. ;-)*
